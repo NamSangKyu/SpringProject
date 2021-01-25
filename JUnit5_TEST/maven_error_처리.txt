@@ -1,0 +1,13 @@
+매이븐 프로젝트 생성시 오류 처리
+C:\Users\사용자\.m2\repository\org\apache\maven\plugins\maven-resources-plugin\2.6 폴더 삭제
+
+pom.xml에 아래 내용 추가
+<dependency>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-resource-plugin</artifactId>
+	<version>2.4.3</version>
+</dependency>
+
+프로젝트 오른쪽 클릭 maven 메뉴에서 maven install
+프로젝트 새로고침
+프로젝트 오른쪽 클릭 maven 메뉴에서 update project
