@@ -1,10 +1,12 @@
 package main;
 
+import dao.EmployeeDAO;
+
 public class TestMain {
 
 	public static void main(String[] args) {
-		System.out.println("Hello World");
-		DBManager.getInstance().getConnection();
+		String result = EmployeeDAO.getInstance().selectEmployeeList(4);
+		System.out.println(result);
 	}
 
 }

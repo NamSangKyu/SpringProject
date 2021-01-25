@@ -1,4 +1,4 @@
-package main;
+package config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,7 +20,6 @@ public class DBManager {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public Connection getConnection() {
