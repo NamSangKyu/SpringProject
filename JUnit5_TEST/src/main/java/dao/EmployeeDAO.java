@@ -49,7 +49,31 @@ public class EmployeeDAO {
 		return result;
 	}
 	
-	
+	public String selectBottom5Salary() {
+		String result = null;
+		String sql = "select rownum, eno,name, department, position_name, salary, position "
+				+ "from(select e.eno, e.name, e.department, p.position_name, s.salary, e.position "
+				+ "from employee e, position_list p , employee_salary s "
+				+ "where e.eno = s.eno and e.position = p.position_no order by s.salary)"
+				+ " where rownum <= 5";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		System.out.println(sql);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			ArrayList<EmployeeDTO> list = new ArrayList<EmployeeDTO>();
+			while(rs.next()) {
+				list.add(new EmployeeDTO(rs.getString(2), rs.getString(3),
+						rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7)));
+			}
+			JSONArray array = new JSONArray(list);
+			result = array.toString();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
 
 
