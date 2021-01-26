@@ -88,6 +88,23 @@ public class EmployeeDAO {
 		
 		return list;
 	}
+
+	public void insertEmployee(EmployeeDTO employeeDTO) throws ServletException{
+		String sql = "insert into employee values(?,?,?,?)";
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, employeeDTO.getEno());
+			pstmt.setString(2, employeeDTO.getName());
+			pstmt.setString(3, employeeDTO.getDepartment());
+			pstmt.setInt(4, employeeDTO.getPosition());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new ServletException("101");
+		}
+		
+	}
 	
 }
 

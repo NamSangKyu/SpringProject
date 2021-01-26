@@ -16,9 +16,9 @@
 				method : "get",
 				dataType:"json",
 				//정상처리부분
-				success:function(result){
-					console.log(result);
-					var arr = JSON.parse(result);
+				success:function(d){
+					console.log(d);
+					var arr = d.result;
 					var text = "";
 					for(i=0;i<arr.length;i++){
 						text += arr[i].eno + " " + arr[i].name + " " + arr[i].department + " " + arr[i].position + "<br>"; 
@@ -27,12 +27,13 @@
 				},
 				//exception 처리
 				error:function(xhr,text,error){
+					alert(xhr.status);
 					switch(xhr.status){
 					case 100:
-						alert("SQL문 에러");
+						alert("사번 길이 오류");
 						break;
 					case 101:
-						alert("보낸 데이터가 잘못되었습니다.");
+						alert("SQL문이 잘못되었습니다.");
 						break;
 					}
 				}
