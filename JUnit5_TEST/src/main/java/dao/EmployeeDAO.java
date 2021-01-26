@@ -48,6 +48,23 @@ public class EmployeeDAO {
 		
 		return result;
 	}
+	public ArrayList<EmployeeDTO> selectEmployeeAllList() {
+		String sql = "select * from employee";
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		ArrayList<EmployeeDTO> list = new ArrayList<EmployeeDTO>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(new EmployeeDTO(rs.getString(1), rs.getString(2), 
+						rs.getString(3), rs.getInt(4)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 	public String selectBottom5Salary() {
 		String result = null;
@@ -78,7 +95,7 @@ public class EmployeeDAO {
 	public EmployeeDTO selectEmployee(String eno) {
 		String sql = "select e.eno, e.name, e.department, e.position, "
 				+ "s.salary, p.position_name from EMPLOYEE e, EMPLOYEE_SALARY s ,"
-				+ " position_list p where e.eno = s.eno and e.position = p.position_no where eno = ?";
+				+ " position_list p where e.eno = s.eno and e.position = p.position_no and e.eno = ?";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

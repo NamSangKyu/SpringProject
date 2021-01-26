@@ -1,6 +1,8 @@
 package test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.AfterEach;
@@ -28,6 +30,13 @@ class EmployeeDTOTest {
 			System.out.println(str);
 	}
 	
+	@DisplayName("빈리스트 확인 테스트")
+	@Test
+	void testEmptyEmployeeList() {
+		assertTrue(!EmployeeDAO.getInstance().selectEmployeeAllList().isEmpty());
+	}
+	
+	
 	@DisplayName("하위연봉5명 조회 테스트")
 	@Test
 	void testSelectBottom5Salary() {
@@ -42,8 +51,11 @@ class EmployeeDTOTest {
 	@DisplayName("사원정보 하나 조회")
 	@Test
 	void testselectEmployee() {
-		EmployeeDTO dto = new EmployeeDTO("TQ98", "강병헌", "영업", "과장", 6200, 4);
-		assertSame(dto, EmployeeDAO.getInstance().selectEmployee("TQ98"));
+		//EmployeeDTO dto = EmployeeDAO.getInstance().selectEmployee("TQ98");
+		int n =10;
+		assertSame(n, 10);//==
+		//EmployeeDTO dto = new EmployeeDTO("TQ98", "강병헌", "영업", "과장", 6200, 4);
+		//assertEquals(dto, EmployeeDAO.getInstance().selectEmployee("TQ98")); //.equals 연산
 	}
 	
 	@AfterEach//각 테스트 메서드가 실행이 끝난 후 수행
