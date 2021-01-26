@@ -74,7 +74,42 @@ public class EmployeeDAO {
 		}
 		return result;
 	}
+	//사원번호로 사원정보 정확하게 1건 검색하는 기능을 작업 - return EmployeeDTO
+	public EmployeeDTO selectEmployee(String eno) {
+		String sql = "select e.eno, e.name, e.department, e.position, "
+				+ "s.salary, p.position_name from EMPLOYEE e, EMPLOYEE_SALARY s ,"
+				+ " position_list p where e.eno = s.eno and e.position = p.position_no where eno = ?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		EmployeeDTO dto = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, eno);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				   dto = new EmployeeDTO(rs.getString(1), rs.getString(2), rs.getString(3),
+						   rs.getString(6), rs.getInt(5), rs.getInt(4));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
