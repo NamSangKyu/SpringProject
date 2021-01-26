@@ -128,6 +128,8 @@ public class EmployeeDAO {
 			while(rs.next()) {
 				list.add(new EmployeeDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4)));
 			}
+			rs.close();
+			pstmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

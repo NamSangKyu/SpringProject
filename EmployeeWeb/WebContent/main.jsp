@@ -14,6 +14,7 @@
 				url : "search.do",
 				data : param,
 				method : "get",
+				dataType:"json",
 				//정상처리부분
 				success:function(result){
 					$("div").html(result);
