@@ -14,11 +14,14 @@
 				url : "search.do",
 				data : param,
 				method : "get",
+				//정상처리부분
 				success:function(result){
 					$("div").html(result);
 				},
+				//exception 처리
 				error:function(xhr,text,error){
-					$("div").html(xhr + " " + text + " " + error);
+					//            error_code         내용
+					$("div").html(xhr.status + " " + xhr.responseText + " " + text);
 				}
 				
 			});
