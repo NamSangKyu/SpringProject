@@ -1,22 +1,30 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import dao.EmployeeDAO;
-import dto.EmployeeDTO;
 
 class EmployeeDTOTest {
 
+	@BeforeAll
+	static void testUp() {
+		System.out.println("테스트 맨처음 한번 수행할 일");
+	}
+	@AfterAll
+	static void done() {
+		System.out.println("테스트 맨 마지막에 한번 수행할 일");
+	}
 	@BeforeEach //각 테스트 메서드가 실행되기 전에 수행
-	void setUp() throws Exception {
+	void init(){
 		System.out.println("테스트 작업전 수행");
 	}
 
