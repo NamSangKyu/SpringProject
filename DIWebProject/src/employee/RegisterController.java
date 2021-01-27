@@ -42,7 +42,9 @@ public class RegisterController extends HttpServlet {
 			try {
 				System.out.println(eno.length());
 				if(eno.length()!=4) throw new Exception("1001");
-				dao.insertEmployee(new EmployeeDTO(eno, name, department, position));
+				EmployeeDTO dto = DIContainer.getContext().getBean("employeeDTO", EmployeeDTO.class);
+				dto.init(eno, name, department, null, 0, position);
+				dao.insertEmployee(dto);
 				ArrayList<EmployeeDTO> list = dao.selectEmployeeAllList();
 				JSONArray arr = new JSONArray(list);//json으로 변형
 				JSONObject obj = new JSONObject();

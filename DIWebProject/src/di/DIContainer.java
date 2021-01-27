@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 import config.DBManager;
 import dao.EmployeeDAO;
+import dto.EmployeeDTO;
 
 @Configuration
 public class DIContainer {
@@ -27,7 +28,19 @@ public class DIContainer {
 		return new EmployeeDAO(manager());
 	}
 	
+	@Bean
+	public EmployeeDTO employeeDTO() {
+		return new EmployeeDTO("AAAA","홍길동","영업",1);
+		
+	}
 }
+
+
+
+
+
+
+
 
 
 

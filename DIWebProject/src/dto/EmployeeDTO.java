@@ -7,7 +7,11 @@ public class EmployeeDTO {
 	private int position;
 	private String positionName;
 	private int salary;
-	
+
+	public EmployeeDTO() {
+
+	}
+
 	public EmployeeDTO(String eno, String name, String department, String positionName, int salary, int position) {
 		super();
 		this.eno = eno;
@@ -22,6 +26,15 @@ public class EmployeeDTO {
 		this.eno = eno;
 		this.name = name;
 		this.department = department;
+		this.position = position;
+	}
+	//DI로 이용시 데이터를 초기화
+	public void init(String eno, String name, String department, String positionName, int salary, int position) {
+		this.eno = eno;
+		this.name = name;
+		this.department = department;
+		this.positionName = positionName;
+		this.salary = salary;
 		this.position = position;
 	}
 	public String getPositionName() {
