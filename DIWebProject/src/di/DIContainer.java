@@ -22,6 +22,11 @@ public class DIContainer {
 		return m;
 	}
 	
+	@Bean
+	public EmployeeDAO employee() {
+		return new EmployeeDAO(manager());
+	}
+	
 }
 
 

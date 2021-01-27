@@ -37,8 +37,8 @@ public class RegisterController extends HttpServlet {
 		String department = request.getParameter("department");
 		int position = Integer.parseInt(request.getParameter("position"));
 		//데이터 검증 DAO로 보내기 전에 수행
-		EmployeeDAO dao = new EmployeeDAO(DIContainer.getContext().getBean("manager",DBManager.class));
-			
+		EmployeeDAO dao = DIContainer.getContext().getBean("employee",EmployeeDAO.class);
+		System.out.println("Register Controller");
 			try {
 				System.out.println(eno.length());
 				if(eno.length()!=4) throw new Exception("1001");

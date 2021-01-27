@@ -32,7 +32,7 @@ public class SearchController extends HttpServlet {
 		String name = request.getParameter("name");
 		System.err.println(name);
 		ArrayList<EmployeeDTO> list = null;
-		EmployeeDAO dao = new EmployeeDAO(DIContainer.getContext().getBean("manager",DBManager.class));
+		EmployeeDAO dao = DIContainer.getContext().getBean("employee",EmployeeDAO.class);
 		try {
 			list = dao.selectEmployeeName(name);
 			JSONArray array = new JSONArray(list);
