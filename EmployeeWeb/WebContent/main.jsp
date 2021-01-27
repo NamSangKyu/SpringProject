@@ -27,13 +27,11 @@
 				},
 				//exception 처리
 				error:function(xhr,text,error){
-					alert(xhr.status);
+					//alert(xhr.status);//에러코드 확인
 					switch(xhr.status){
-					case 100:
-						alert("사번 길이 오류");
-						break;
-					case 101:
-						alert("SQL문이 잘못되었습니다.");
+					case 1001:
+					case 1002:
+						alert(xhr.responseText);//에러 메세지 수신
 						break;
 					}
 				}
