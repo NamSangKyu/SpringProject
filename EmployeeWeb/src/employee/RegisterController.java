@@ -38,7 +38,7 @@ public class RegisterController extends HttpServlet {
 	
 			
 			try {
-				if(eno.length()!=4) throw new Exception(); 
+				if(eno.length()!=4) throw new Exception("1001");
 				EmployeeDAO.getInstance().insertEmployee(new EmployeeDTO(eno, name, department, position));
 				ArrayList<EmployeeDTO> list = EmployeeDAO.getInstance().selectEmployeeAllList();
 				JSONArray arr = new JSONArray(list);//json으로 변형
