@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 	private MemberService memberService;
 
+	//자동으로 AutoWire가 적용되어있음 생성시 자동으로 역주입을 해줌(Bean에 등록된 클래스만)
 	public MainController(MemberService memberService) {
 		System.out.println("MainController Constructor");
 		this.memberService = memberService;

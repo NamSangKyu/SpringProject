@@ -1,6 +1,5 @@
 package org.korea.mvc.dao;
 
-import java.beans.JavaBean;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,11 +9,12 @@ import org.korea.mvc.dto.MemberDTO;
 import config.DBManager;
 public class MemberDAO {
 	private DBManager manager;
-
-	public MemberDAO() {
-		manager = new DBManager();
-	}
 	
+	public MemberDAO(DBManager manager) {
+		super();
+		this.manager = manager;
+	}
+
 	public MemberDTO login(String id, String pass) {
 		MemberDTO dto = null;
 		String sql = "select * from member where id = ? and pass = ?";
