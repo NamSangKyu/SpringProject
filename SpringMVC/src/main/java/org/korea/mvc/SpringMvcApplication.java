@@ -19,6 +19,7 @@ public class SpringMvcApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringMvcApplication.class, args);
+		System.out.println("서버 구동 완료");
 	}
 
 }

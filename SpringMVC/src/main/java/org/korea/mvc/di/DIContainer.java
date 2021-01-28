@@ -7,14 +7,24 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class DIContainer {
-	private static AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-			DIContainer.class);
-
-	public static AnnotationConfigApplicationContext getContext() {
-		return context;
-	}
+	
+	
 	@Bean
-	public MemberDAO memberdao() { 
+	public MemberDAO employee() {
 		return new MemberDAO();
 	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
