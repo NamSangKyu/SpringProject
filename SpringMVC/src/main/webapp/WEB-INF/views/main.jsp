@@ -6,6 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function() {
+		$("#btnDate").click(function() {
+			$.ajax({
+				url:"ajax.do",
+				method:"get",
+				success:function(d){
+					$("span").html(d);
+				}
+			});//ajax
+		});//click
+	});//main
+</script>
 </head>
 <body>
 	<form action="loginAction.do" method="post">
@@ -14,5 +28,17 @@
 		<button>로그인</button>
 	</form>
 	${sessionScope.id },${sessionScope.pass },<%=session.getId() %>
+	<br>
+	<button id="btnDate">날짜시간 조회</button><span></span>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
