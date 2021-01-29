@@ -10,4 +10,6 @@ import com.db.StudentDTO;
 public interface StudentMapper {
 	public List<StudentDTO> selectAllStudent();
 	public int insertStudent(StudentDTO dto);
+	public int updateStudent(StudentDTO dto);
+	public int deleteStudent(String sno);
 }

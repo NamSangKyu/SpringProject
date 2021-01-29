@@ -22,6 +22,13 @@ public class StudentService {
 	public int insertStudent(StudentDTO dto) {
 		return mapper.insertStudent(dto);
 	}
+
+	public int updateStudent(StudentDTO dto) {
+		return mapper.updateStudent(dto);
+	}
+	public int deleteStudent(String sno) {
+		return mapper.deleteStudent(sno);
+	}
 	
 }
 
