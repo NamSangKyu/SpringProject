@@ -43,8 +43,8 @@ public class MainController {
 			return "main";
 		}else {
 			try {
-				response.setCharacterEncoding("utf-8");
-				response.getWriter().write("<script>alert('아이디 비번을 확인하세요');histroy.back();</script>");
+				response.setContentType("text/html;charset=utf-8");
+				response.getWriter().write("<script>alert('아이디 비번을 확인하세요');history.back();</script>");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
