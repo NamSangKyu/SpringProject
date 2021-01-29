@@ -41,7 +41,7 @@
 </style>
 <nav id="menu_bar">
 	<ul>
-		<li><a href="main.jsp">HOME</a></li>
+		<li><a href="/">HOME</a></li>
 		<li><a href="logout.do">로그아웃</a></li>
 		<%
 			if(session.getAttribute("grade").equals("master"))
@@ -60,7 +60,7 @@
 	<div id="login">
 		<table>
 			<tr>
-				<td><img src="img/${sessionScope.grade}.png" style="width:32px;"></td>
+				<td><img src="/img/${sessionScope.grade}.png" style="width:32px;"></td>
 				<td>${sessionScope.name }님 로그인</td>
 			</tr>
 			
@@ -99,7 +99,7 @@
 </style>
 <nav id="menu_bar">
 	<ul>
-		<li><a href="main.jsp">HOME</a></li>
+		<li><a href="/">HOME</a></li>
 		<li><a href="register.jsp">회원가입</a></li>
 		<li><a href="loginView.do">로그인</a></li>
 		<li><a href="#">문의하기</a></li>

@@ -29,6 +29,11 @@ public class MainController {
 	public String loginView() {
 		return "login";
 	}
+	@RequestMapping("logout.do")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return main();
+	}
 	@RequestMapping("login.do")
 	public String login(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		String id = request.getParameter("id");
@@ -39,25 +44,7 @@ public class MainController {
 			session.setAttribute("login", true);
 			session.setAttribute("id", dto.getId());
 			session.setAttribute("name", dto.getName());
-			String grade = null;
-			switch(dto.getGrade()) {
-			case 0:
-				grade = "master";
-				break;
-			case 1:
-				grade = "bronze";
-				break;
-			case 2:
-				grade = "gold";
-				break;
-			case 3:
-				grade = "vip";
-				break;
-			case 4:
-				grade = "vvip";
-				break;
-			}
-			session.setAttribute("grade", grade);
+			session.setAttribute("grade", dto.getGrade());
 			
 			return "main";
 		}else {

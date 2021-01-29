@@ -8,8 +8,8 @@ public class MemberDTO {
 	private String pass;
 	private String name;
 	private int age;
-	private int grade;
-	public MemberDTO(String id, String pass, String name, int age, int grade) {
+	private String grade;
+	public MemberDTO(String id, String pass, String name, int age, String grade) {
 		super();
 		this.id = id;
 		this.pass = pass;
@@ -41,10 +41,10 @@ public class MemberDTO {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public int getGrade() {
+	public String getGrade() {
 		return grade;
 	}
-	public void setGrade(int grade) {
+	public void setGrade(String grade) {
 		this.grade = grade;
 	}
 	@Override
