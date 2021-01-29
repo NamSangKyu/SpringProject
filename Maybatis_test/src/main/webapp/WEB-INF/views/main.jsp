@@ -13,7 +13,7 @@
 </style>
 </head>
 <body>
-	<form id="input_frm">
+	<form id="input_frm" action="register.do" method="post">
 		<input type="text" name="sno" placeholder="학번">
 		<input type="text" name="name" placeholder="이름">
 		<input type="text" name="major" placeholder="학과">

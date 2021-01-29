@@ -18,8 +18,18 @@ public class StudentService {
 	public List<StudentDTO> selectAllStudent(){
 		return mapper.selectAllStudent();
 	}
+
+	public int insertStudent(StudentDTO dto) {
+		return mapper.insertStudent(dto);
+	}
 	
 }
+
+
+
+
+
+
 
 
 

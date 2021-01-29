@@ -9,4 +9,5 @@ import com.db.StudentDTO;
 @Mapper
 public interface StudentMapper {
 	public List<StudentDTO> selectAllStudent();
+	public int insertStudent(StudentDTO dto);
 }
