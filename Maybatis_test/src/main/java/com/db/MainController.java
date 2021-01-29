@@ -3,6 +3,7 @@ package com.db;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -14,12 +15,13 @@ public class MainController {
 	}
 	
 	@RequestMapping("/main.do")
-	public String main() {
+	public String main(Model model) {
 		List<StudentDTO> list = service.selectAllStudent();
-		for(int i=0;i<list.size();i++){
-			System.out.println(list.get(i).toString());
-		}
-		return null;
+//		for(int i=0;i<list.size();i++){
+//			System.out.println(list.get(i).toString());
+//		}
+		model.addAttribute("list",list);
+		return "main";
 	}
 	
 }
