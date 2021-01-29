@@ -13,7 +13,7 @@
 		update student set name = #{name}, major = #{major}, score = #{score} where sno = #{sno}
 	</update>
 	<delete id="deleteStudent" parameterType="String">
-		delete from student where id = #{sno}
+		delete from student where sno = #{sno}
 	</delete>
 	
 </mapper>
