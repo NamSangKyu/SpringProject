@@ -39,7 +39,26 @@ public class MainController {
 			session.setAttribute("login", true);
 			session.setAttribute("id", dto.getId());
 			session.setAttribute("name", dto.getName());
-			session.setAttribute("grade", dto.getGrade());
+			String grade = null;
+			switch(dto.getGrade()) {
+			case 0:
+				grade = "master";
+				break;
+			case 1:
+				grade = "bronze";
+				break;
+			case 2:
+				grade = "gold";
+				break;
+			case 3:
+				grade = "vip";
+				break;
+			case 4:
+				grade = "vvip";
+				break;
+			}
+			session.setAttribute("grade", grade);
+			
 			return "main";
 		}else {
 			try {
