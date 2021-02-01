@@ -85,7 +85,7 @@ public class MainController {
 		if(id == null) {
 			//세션이 만료된 경우
 			try {
-				response.setContentType("text/html; charset='utf-8'");
+				response.setContentType("text/html; charset=utf-8");
 				response.getWriter().write("<script>alert('세션이 만료되었습니다."
 						+ " 다시 로그인해 주세요');"
 						+ "location.href='login.do';</script>");
