@@ -1,11 +1,16 @@
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 
@@ -49,7 +54,7 @@ public class MemberSearchMain {
 			System.out.println(result);
 			JSONObject json = new JSONObject(result);
 			if(json.getInt("responseCode") == 500){
-				throw new Exception(json.getString("responseMessage"));
+				throw new Exception(json.getInt("responseCode") + "\t" + json.getString("responseMessage")+"\n");
 			}
 			
 			JSONArray arr = json.getJSONArray("result");
@@ -61,7 +66,6 @@ public class MemberSearchMain {
 				System.out.println(obj.getString("grade"));
 			}
 			br.close();
-			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -69,6 +73,23 @@ public class MemberSearchMain {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
+			try {
+				//true 추가모드, false 새파일로 생성
+				FileOutputStream fos = new FileOutputStream("error.txt",true);
+				PrintWriter pw = new PrintWriter(fos);
+				//날짜 셋팅 에러발생한 시점
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+				Calendar today = Calendar.getInstance();
+				String str = sdf.format(today.getTime())+ "\t" + e.getMessage();
+				System.out.println(str);
+				pw.write(str);
+				pw.flush();
+				pw.close();
+				
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			}
+			
 			e.printStackTrace();
 		}
 		
