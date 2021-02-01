@@ -15,4 +15,30 @@
 	<select id="selectAllMember" resultType="board.dto.MemberDTO">
 		select * from member
 	</select>
+	<select id="selectSearchMember" parameterType="map" resultType="board.dto.MemberDTO">
+		select * from member where
+		<choose>
+			<when test="kind.equals('id')">
+				id like '%'||#{search}||'%'
+			</when>
+			<when test="kind.equals('name')">
+				name like '%'||#{search}||'%' 
+			</when>
+			<otherwise>
+				grade = #{search}
+			</otherwise>
+		</choose>
+	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+

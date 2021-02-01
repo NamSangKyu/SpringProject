@@ -37,7 +37,20 @@ public class MemberService {
 		return mapper.selectAllMember();
 	}
 
+	public List<MemberDTO> selectSearchMember(String kind, String search) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("kind", kind);
+		map.put("search", search);
+		return mapper.selectSearchMember(map);
+	}
+
 }
+
+
+
+
+
+
 
 
 

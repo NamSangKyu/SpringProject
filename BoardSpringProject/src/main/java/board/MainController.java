@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -47,7 +49,7 @@ public class MainController {
 			session.setAttribute("id", dto.getId());
 			session.setAttribute("name", dto.getName());
 			session.setAttribute("grade", dto.getGrade());
-			session.setMaxInactiveInterval(10);
+			session.setMaxInactiveInterval(10*60);
 			
 			return "main";
 		}else {
@@ -107,6 +109,23 @@ public class MainController {
 		List<MemberDTO> list = memberService.selectAllMember();
 		request.setAttribute("list", list);
 		return "member_manage_main";
+	}
+	
+	@RequestMapping("/memberSerach.do")
+	public String memberAdminSearch(HttpServletRequest request, HttpServletResponse response) {
+		String kind = request.getParameter("kind");
+		String search = request.getParameter("search");
+		List<MemberDTO> list = memberService.selectSearchMember(kind, search);
+		response.setContentType("text/html;charset=utf-8");
+		JSONArray array = new JSONArray(list);
+		JSONObject obj = new JSONObject();
+		obj.put("result",array);
+		try {
+			response.getWriter().write(obj.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
 
