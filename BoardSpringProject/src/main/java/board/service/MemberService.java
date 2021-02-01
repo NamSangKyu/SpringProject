@@ -1,6 +1,8 @@
 package board.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,10 @@ public class MemberService {
 
 	public int updateMember(MemberDTO dto) {
 		return mapper.updateMember(dto); 
+	}
+
+	public List<MemberDTO> selectAllMember() {
+		return mapper.selectAllMember();
 	}
 
 }

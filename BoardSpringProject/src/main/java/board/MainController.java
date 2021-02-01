@@ -1,6 +1,8 @@
 package board;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -98,6 +100,13 @@ public class MainController {
 		
 		return "main";
 		
+	}
+	
+	@RequestMapping("/memberAdminMain.do")
+	public String memberAdminMain(HttpServletRequest request) {
+		List<MemberDTO> list = memberService.selectAllMember();
+		request.setAttribute("list", list);
+		return "member_manage_main";
 	}
 }
 

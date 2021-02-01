@@ -12,4 +12,7 @@
 	<update id="updateMember" parameterType="board.dto.MemberDTO">
 		update member set name = #{name}, pass = #{pass}, age = #{age} where id = #{id}
 	</update>
+	<select id="selectAllMember" resultType="board.dto.MemberDTO">
+		select * from member
+	</select>
 </mapper>
