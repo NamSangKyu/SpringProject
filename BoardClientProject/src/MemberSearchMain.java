@@ -54,6 +54,7 @@ public class MemberSearchMain {
 			System.out.println(result);
 			JSONObject json = new JSONObject(result);
 			if(json.getInt("responseCode") == 500){
+				//log 파일에 저장될 내용 셋팅 \t
 				throw new Exception(json.getInt("responseCode") + "\t" + json.getString("responseMessage")+"\n");
 			}
 			
@@ -80,6 +81,7 @@ public class MemberSearchMain {
 				//날짜 셋팅 에러발생한 시점
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 				Calendar today = Calendar.getInstance();
+				//로그 내용 앞에 발생한 날짜
 				String str = sdf.format(today.getTime())+ "\t" + e.getMessage();
 				System.out.println(str);
 				pw.write(str);

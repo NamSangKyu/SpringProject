@@ -18,5 +18,6 @@ public interface MemberMapper {
 	List<MemberDTO> selectSearchMember(HashMap<String, Object> map);
 	int updateMemberAdmin(MemberDTO dto);
 	int deleteMemberAdmin(String id);
+	int insertLog(HashMap<String, Object> map);
 	
 }

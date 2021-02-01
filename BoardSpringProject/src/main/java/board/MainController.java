@@ -172,7 +172,21 @@ public class MainController {
 		return null;
 	}
 	
-	
+	@RequestMapping("sendLog.do")
+	public String sendLog(HttpServletRequest request, HttpServletResponse response) {
+		String log_date = request.getParameter("log_date");
+		int code_number = Integer.parseInt(request.getParameter("code_number"));
+		String message = request.getParameter("message");
+		System.out.println(log_date + " " + code_number + " " + message);
+		int count = memberService.insertLog(log_date,code_number,message);
+		System.out.println(count);
+		try {
+			response.getWriter().write("true");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
 
 
