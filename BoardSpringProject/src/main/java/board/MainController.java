@@ -74,6 +74,31 @@ public class MainController {
 		
 		return "member_update_view";
 	}
+	
+	@RequestMapping("/updateMemberAction.do")
+	public String updateMemberAction(HttpServletRequest request, HttpServletResponse response) {
+		String id= (String) request.getSession().getAttribute("id");
+		String pass= request.getParameter("pass");
+		String name= request.getParameter("name");
+		int age = Integer.parseInt(request.getParameter("age"));
+		
+		if(id == null) {
+			//세션이 만료된 경우
+			try {
+				response.setContentType("text/html; charset='utf-8'");
+				response.getWriter().write("<script>alert('세션이 만료되었습니다."
+						+ " 다시 로그인해 주세요');"
+						+ "location.href='login.do';</script>");
+				return null;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		memberService.updateMember(new MemberDTO(id, pass, name, age));
+		
+		return "main";
+		
+	}
 }
 
 
