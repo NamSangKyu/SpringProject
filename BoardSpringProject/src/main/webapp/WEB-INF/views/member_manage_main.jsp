@@ -58,25 +58,22 @@ td{
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 	function update_member(obj) {
-		//alert($(this).parent().parent().index());//현재 버튼이 속해있는 tr을 선택, 인덱스 번호 조회
 		var data = "";
 		$.each($(obj).parent().parent().find("input"), function(i,o) {
-			//데이터를 조립 쿼리 스트링 id=A0001&name=홍길동
 			console.log(i,$(o).val());
 			data += $(o).attr("name") + "=" + $(o).val()  + "&"; 
 		});
 		console.log(data);
-		//ajax를 이용하여 수정 처리 -> AjaxUpdateMember.jsp --> MemberService -> MemberDAO
 		$.ajax({
 			url : "memberAjaxUpdate.do",
 			data : data,
 			method:"get",
 			success:function(d){
-				d = Boolean(d);
+				d = d === "true"; // 동일한 값 O, 양쪽 데이터 타입 O  1234 == "1234" --> true, 1234 === "1234" --> false
 				if(d){
-					console.log("수정 성공");
+					alert("수정 성공");
 				}else{
-					console.log("수정 실패");						
+					alert("수정 실패");						
 				}
 				location.href = "memberAdminMain.do";
 			}
@@ -93,9 +90,9 @@ td{
 			success:function(d){
 				d = Number(d);
 				if(d==1){
-					console.log("삭제 성공");
+					alert("삭제 성공");
 				}else{
-					console.log("삭제 실패");						
+					alert("삭제 실패");						
 				}
 				location.href = "memberAdminMain.do";	
 			}

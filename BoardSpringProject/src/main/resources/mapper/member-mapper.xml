@@ -13,10 +13,10 @@
 		update member set name = #{name}, pass = #{pass}, age = #{age} where id = #{id}
 	</update>
 	<select id="selectAllMember" resultType="board.dto.MemberDTO">
-		select * from member
+		select id,pass,name,age,(select lower(grade_name) from grade_list where grade_no = grade)  from member
 	</select>
 	<select id="selectSearchMember" parameterType="map" resultType="board.dto.MemberDTO">
-		select * from member where
+		select id,pass,name,age,(select lower(grade_name) from grade_list where grade_no = grade)  from member where
 		<choose>
 			<when test="kind.equals('id')">
 				id like '%'||#{search}||'%'
@@ -29,7 +29,29 @@
 			</otherwise>
 		</choose>
 	</select>
+	<update id="updateMemberAdmin" parameterType="board.dto.MemberDTO">
+		update member set name=#{name}, age=#{age}, grade = 
+		(select grade_no from grade_list where grade_name = lower(#{grade})) where id = #{id}
+	</update>
+	<delete id="deleteMemberAdmin" parameterType="String">
+		delete from member where id = #{id}
+	</delete>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

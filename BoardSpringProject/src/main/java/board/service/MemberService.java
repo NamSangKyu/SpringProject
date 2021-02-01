@@ -44,6 +44,14 @@ public class MemberService {
 		return mapper.selectSearchMember(map);
 	}
 
+	public int updateMemberAdmin(MemberDTO dto) {
+		return mapper.updateMemberAdmin(dto);
+	}
+
+	public int deleteMemberAdmin(String id) {
+		return mapper.deleteMemberAdmin(id);
+	}
+
 }
 
 
