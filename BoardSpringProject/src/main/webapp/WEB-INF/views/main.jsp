@@ -59,6 +59,12 @@
 		right:0px;
 	}
 </style>
+<script src="/lib/jquery-3.5.1.min.js"></script>
+<script>
+	$(function() {
+		//alert("웹 페이지 로딩완료");
+	});
+</script>
 </head>
 <body>
 		<!-- header.jsp를 현재 문서에 포함 -->

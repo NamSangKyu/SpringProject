@@ -10,5 +10,6 @@ import board.dto.MemberDTO;
 public interface MemberMapper {
 
 	MemberDTO login(Map<String, Object> map);
+	MemberDTO selectMember(String id);
 	
 }

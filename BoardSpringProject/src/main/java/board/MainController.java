@@ -45,6 +45,7 @@ public class MainController {
 			session.setAttribute("id", dto.getId());
 			session.setAttribute("name", dto.getName());
 			session.setAttribute("grade", dto.getGrade());
+			session.setMaxInactiveInterval(10);
 			
 			return "main";
 		}else {
@@ -57,6 +58,21 @@ public class MainController {
 		}
 		
 		return null;
+	}
+	@RequestMapping("/updateMemberView.do")
+	public String updateMemberView(HttpServletRequest request , HttpSession session) {
+		
+		String id = (String) session.getAttribute("id");
+		
+		//세션 정보가 유효한지 체크
+		if(id == null)
+			return "login";
+		
+		//회원정보 조회
+		MemberDTO dto = memberService.selectMember(id);
+		request.setAttribute("dto", dto);
+		
+		return "member_update_view";
 	}
 }
 
