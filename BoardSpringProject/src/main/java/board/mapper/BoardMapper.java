@@ -10,5 +10,6 @@ import board.dto.BoardDTO;
 public interface BoardMapper {
 
 	List<BoardDTO> selectBoardList(int page);
+	int selectCount();
 
 }

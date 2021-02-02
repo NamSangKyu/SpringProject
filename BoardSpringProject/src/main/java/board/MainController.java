@@ -17,6 +17,7 @@ import board.dto.BoardDTO;
 import board.dto.MemberDTO;
 import board.service.BoardService;
 import board.service.MemberService;
+import board.vo.PaggingVO;
 
 @Controller
 public class MainController {
@@ -40,7 +41,10 @@ public class MainController {
 		if(request.getParameter("pageNo") != null)
 			page = Integer.parseInt(request.getParameter("pageNo"));
 		List<BoardDTO> list = boardService.selectBoardList(page);//글목록 읽어옴
+		int count = boardService.selectCount();
+		PaggingVO vo = new PaggingVO(count, page);
 		request.setAttribute("list", list);
+		request.setAttribute("pagging", vo);
 		System.out.println(list.toString());
 		return "main";
 	}

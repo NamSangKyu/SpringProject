@@ -19,6 +19,10 @@ public class BoardService {
 	public List<BoardDTO> selectBoardList(int page) {
 		return mapper.selectBoardList(page);
 	}
+
+	public int selectCount() {
+		return mapper.selectCount();
+	}
 	
 	
 }

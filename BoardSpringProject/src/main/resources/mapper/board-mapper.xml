@@ -21,7 +21,23 @@
  	 		 </choose>
  	 		  where pagenum = #{pageNo} 	 	
 	</select>
+	<select id="selectCount" resultType="int">
+		select count(*) from board
+	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
