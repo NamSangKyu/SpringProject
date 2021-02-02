@@ -69,8 +69,40 @@
 <body>
 		<!-- header.jsp를 현재 문서에 포함 -->
 	<jsp:include page="template/header.jsp" flush="false"></jsp:include>
-	<div id="container">
-		
+		<div id="container">
+		<table class="board">
+			<tr>
+				<th>글번호</th>
+				<th class="title">제목</th>
+				<th class="writer">작성자</th>
+				<th class="date">작성일</th>
+				<th>조회수</th>
+				<th><a href="main.do?mode=blike">좋아요</a></th><!-- 좋아요 클릭하면 좋아요를 많이 받은 순서대로 출력 -->
+				<th><a href="main.do?mode=bhate">싫어요</a></th>
+			</tr>
+	<!-- 게시판 기능 추가 기존 게시판에 있는 내용을 el과 jstl로 표현 -->
+		<c:if test="${requestScope.list ==null}">
+			<script>
+				location.href="main.do?pageNo=1";
+				
+			</script>
+		</c:if>
+		<c:forEach var="dto" items="${requestScope.list }">
+			<tr>
+				<td>${dto.bno }</td>
+				<td><a href="boardView.do?bno=${dto.bno }"> ${dto.title }
+					<c:if test="${dto.cCount > 0 }">
+						[${dto.cCount}]
+					</c:if>
+				</a></td>
+				<td>${dto.writer}</td>
+				<td>${dto.bDate }</td>
+				<td>${dto.bCount }</td>
+				<td>${dto.bLike }</td>
+				<td>${dto.bHate }</td>
+			</tr>
+		</c:forEach>
+		</table>
 	</div>
 	<jsp:include page="template/footer.jsp" flush="false"></jsp:include>
 

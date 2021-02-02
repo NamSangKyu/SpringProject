@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.mapper.BoardMapper">
+	<select id="selectBoardList" parameterType="int" resultType="board.dto.BoardDTO">
+		select bno,title,bdate,bcount, writer,content,blike,bhate,comment_count from (select ceil(rownum / 7) as pagenum,bno,title,bdate,bcount, writer,content,blike,bhate,comment_count from
+ 	 		 (select b.*, nvl(c.comment_count,0) as comment_count from board b,
+ 	 		 (select bno, count(*) as comment_count from board_comment group by bno) c 
+ 	 		 where b.bno = c.bno(+) 
+ 	 		 <choose>
+ 	 		 	<when test="mode.equals('blike')">
+	 	 		 	order by b.blike desc)) 
+ 	 		 	</when>
+ 	 		 	<when test="mode.equals('bhate')">
+	 	 			 order by b.bhate desc))
+ 	 		 	</when>
+				<otherwise>
+	 	 			 order by b.bno desc))
+				</otherwise>
+ 	 		 </choose>
+ 	 		  where pagenum = #{pageNo} 	 	
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
