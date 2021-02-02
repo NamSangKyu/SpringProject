@@ -31,6 +31,8 @@ public class SendLogJob implements Job {
 				if(str == null) break;
 				sendLog(str.split("\t"));
 			}
+			fr.close();
+			br.close();
 			System.out.println("파일 삭제 : " + file.delete());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
