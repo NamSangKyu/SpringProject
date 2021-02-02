@@ -23,6 +23,14 @@ public class BoardService {
 	public int selectCount() {
 		return mapper.selectCount();
 	}
+
+	public void addCount(int bno) {
+		mapper.addCount(bno);
+	}
+
+	public BoardDTO selectBoard(int bno) {
+		return mapper.selectBoard(bno);
+	}
 	
 	
 }

@@ -207,6 +207,23 @@ public class MainController {
 		}
 		return null;
 	}
+	@RequestMapping("/boardView.do")
+	public String boardView(HttpServletRequest request) {
+		//게시글 하나 읽음
+		//1. request에서 게시글 번호 읽어옴
+		int bno = Integer.parseInt(request.getParameter("bno"));
+		//1-1. 해당 게시글 조회수 증가
+		boardService.addCount(bno);
+		//2. DB 해당 게시글 정보 읽어옴
+		BoardDTO dto = boardService.selectBoard(bno);
+		//2-1. 댓글 로드 부분
+		//3. request에 BoardDTO 저장
+		request.setAttribute("board", dto);
+		
+		return "board_detail_view";
+	}
+	
+	
 }
 
 

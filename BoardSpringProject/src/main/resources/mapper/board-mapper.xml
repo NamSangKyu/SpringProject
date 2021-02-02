@@ -24,6 +24,12 @@
 	<select id="selectCount" resultType="int">
 		select count(*) from board
 	</select>
+	<update id="addCount" parameterType="int">
+		update board set bcount = bcount+1 where bno = #{bno}
+	</update>
+	<select id="selectBoard" parameterType="int" resultType="board.dto.BoardDTO">
+		select * from board where bno = #{bno}
+	</select>
 </mapper>
 
 
