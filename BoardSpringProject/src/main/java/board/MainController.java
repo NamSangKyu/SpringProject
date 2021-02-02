@@ -181,7 +181,7 @@ public class MainController {
 		int count = memberService.insertLog(log_date,code_number,message);
 		System.out.println(count);
 		try {
-			response.getWriter().write("true");
+			response.getWriter().write("add count + "+count);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
