@@ -253,9 +253,18 @@ public class MainController {
 		return boardView(request);
 	}
 	@RequestMapping("/plusLikeHate.do")
-	public String plusLikeHate(HttpServletRequest request) {
-		int bno = Integer.parseInt((String)request.getAttribute("bno"));
-		int mode =Integer.parseInt((String)request.getAttribute("mode"));
+	public String plusLikeHate(HttpServletRequest request, HttpServletResponse response) {
+		int bno = Integer.parseInt((String)request.getParameter("bno"));
+		int mode =Integer.parseInt((String)request.getParameter("mode"));
+		
+		int count = 0;
+		
+		count = boardService.addBoardLikeHate(mode, bno);
+		try {
+			response.getWriter().write(String.valueOf(count));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	

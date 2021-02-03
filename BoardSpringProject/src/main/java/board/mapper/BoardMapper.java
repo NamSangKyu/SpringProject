@@ -1,5 +1,6 @@
 package board.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -18,6 +19,7 @@ public interface BoardMapper {
 	int insertBoardComment(CommentDTO dto);
 	int updateCommentLike(int cno);
 	int updateCommentHate(int cno);
+	void addBoardLikeHate(HashMap<String, Object> map);
 
 }
 

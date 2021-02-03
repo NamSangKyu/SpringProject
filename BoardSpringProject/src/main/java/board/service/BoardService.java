@@ -1,5 +1,6 @@
 package board.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -47,6 +48,18 @@ public class BoardService {
 
 	public int updateCommentHate(int cno) {
 		return mapper.updateCommentHate(cno);
+	}
+
+	public int addBoardLikeHate(int mode, int bno) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("mode", mode);
+		map.put("bno", bno);
+		mapper.addBoardLikeHate(map);
+		BoardDTO dto = mapper.selectBoard(bno);
+		if(mode == 0)
+			return dto.getbLike();
+		else
+			return dto.getbHate();
 	}
 	
 	

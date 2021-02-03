@@ -144,6 +144,7 @@
 			// bno;
 			var obj = $(this);
 			d = "bno=${requestScope.board.bno}&mode="+$(this).index();
+			console.log(d);
 			$.ajax({
 				url : "plusLikeHate.do",
 				data : d,

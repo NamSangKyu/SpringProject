@@ -42,6 +42,19 @@
 	<update id="updateCommentHate" parameterType="int">
 		update board_comment set bhate = bhate+ 1 where cno = #{cno}  
 	</update>
+	<update id="addBoardLikeHate" parameterType="map">
+		update board set 
+		<choose>
+			<when test="mode == 0">
+				blike = blike + 1
+			</when>
+			<otherwise>
+				bhate = bhate + 1
+			</otherwise>
+		</choose>
+		where bno = #{bno}
+	
+	</update>
 </mapper>
 
 
