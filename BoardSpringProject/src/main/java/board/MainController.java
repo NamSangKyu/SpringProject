@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import board.dto.BoardDTO;
+import board.dto.CommentDTO;
 import board.dto.MemberDTO;
 import board.service.BoardService;
 import board.service.MemberService;
@@ -74,7 +75,7 @@ public class MainController {
 			session.setAttribute("grade", dto.getGrade());
 			session.setMaxInactiveInterval(10 * 60);
 			System.out.println("로그인 성공");
-			return "main";
+			return index(request);
 		} else {
 			try {
 				response.setContentType("text/html;charset=utf-8");
@@ -217,12 +218,28 @@ public class MainController {
 		//2. DB 해당 게시글 정보 읽어옴
 		BoardDTO dto = boardService.selectBoard(bno);
 		//2-1. 댓글 로드 부분
-		//3. request에 BoardDTO 저장
+		List<CommentDTO> list = boardService.selectBoardComment(bno);
+		//2-2. 첨부파일 로드 부분
+		
+		//3. request에 BoardDTO, CommentList 저장
 		request.setAttribute("board", dto);
+		request.setAttribute("comment", list);
+		
 		
 		return "board_detail_view";
 	}
 	
+	@RequestMapping("/insertComment.do")
+	public String insertComment(HttpServletRequest request, HttpServletResponse response) {
+		
+		int bno = Integer.parseInt(request.getParameter("bno"));
+		String writer = request.getParameter("writer");
+		String content = request.getParameter("content");
+		
+		boardService.insertComment(new CommentDTO(bno, content, writer));
+		
+		return null;
+	}
 	
 }
 

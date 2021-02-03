@@ -30,6 +30,12 @@
 	<select id="selectBoard" parameterType="int" resultType="board.dto.BoardDTO">
 		select * from board where bno = #{bno}
 	</select>
+	<select id="selectBoardComment" parameterType="int" resultType="comment">
+		select * from board_comment where bno = #{bno}
+	</select>
+	<insert id="insertBoardComment" parameterType="board.dto.CommentDTO">
+		insert into board_comment(cno, bno, writer, content) values(board_comment_seq.nextval,#{bno},#{writer},#{content})
+	</insert>
 </mapper>
 
 

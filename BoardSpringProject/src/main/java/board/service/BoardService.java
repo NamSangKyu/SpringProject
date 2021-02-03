@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import board.dto.BoardDTO;
+import board.dto.CommentDTO;
 import board.mapper.BoardMapper;
 
 @Service
@@ -30,6 +31,14 @@ public class BoardService {
 
 	public BoardDTO selectBoard(int bno) {
 		return mapper.selectBoard(bno);
+	}
+
+	public List<CommentDTO> selectBoardComment(int bno) {
+		return mapper.selectBoardComment(bno);
+	}
+
+	public int insertComment(CommentDTO dto) {
+		return mapper.insertBoardComment(dto); 		
 	}
 	
 	
