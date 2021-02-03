@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import board.dto.BoardDTO;
 import board.dto.CommentDTO;
+import board.dto.FileDTO;
 
 @Mapper
 public interface BoardMapper {
@@ -22,6 +23,7 @@ public interface BoardMapper {
 	void addBoardLikeHate(HashMap<String, Object> map);
 	int newBno();
 	int insertBoard(BoardDTO dto);
+	void insertFileList(FileDTO dto);
 
 }
 

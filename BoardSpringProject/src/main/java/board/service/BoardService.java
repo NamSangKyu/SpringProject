@@ -1,5 +1,6 @@
 package board.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import board.dto.BoardDTO;
 import board.dto.CommentDTO;
+import board.dto.FileDTO;
 import board.mapper.BoardMapper;
 
 @Service
@@ -68,6 +70,12 @@ public class BoardService {
 
 	public int insertBoard(BoardDTO dto) {
 		return mapper.insertBoard(dto);
+	}
+
+	public void insertFileList(ArrayList<FileDTO> fList) {
+		for(int i = 0;i<fList.size();i++)
+			mapper.insertFileList(fList.get(i));
+		
 	}
 	
 	

@@ -1,5 +1,6 @@
 package board;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +13,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import board.dto.BoardDTO;
 import board.dto.CommentDTO;
+import board.dto.FileDTO;
 import board.dto.MemberDTO;
 import board.service.BoardService;
 import board.service.MemberService;
@@ -278,7 +282,7 @@ public class MainController {
 	}
 	
 	@RequestMapping("/boardWriteAction.do")
-	public String boardWriteAction(HttpServletRequest request) {
+	public String boardWriteAction(MultipartHttpServletRequest request) {
 		//글번호 먼저 발급
 		int bno = boardService.newBno();
 		
@@ -287,6 +291,35 @@ public class MainController {
 		String content = request.getParameter("content");
 		boardService.insertBoard(new BoardDTO(bno, title, writer, content));
 		request.setAttribute("bno", bno);
+		
+		List<MultipartFile> fileList = request.getFiles("file"); 
+		System.out.println(fileList.size());
+		String path = "c:\\fileupload\\"+writer+"\\";
+		ArrayList<FileDTO> fList =new  ArrayList<FileDTO>();
+		
+		for(MultipartFile mf : fileList) {
+			String originalFileName = mf.getOriginalFilename();
+			long fileSize = mf.getSize();
+			if(fileSize == 0) continue;
+			System.out.println("originalFileName : " + originalFileName);
+			System.out.println("fileSize : "+ fileSize);
+			
+			try {
+			//파일 업로드
+			String safeFile = path + originalFileName;
+			fList.add(new FileDTO(bno, writer, originalFileName));
+			File parentPath = new File(path);
+			if(!parentPath.exists()) parentPath.mkdirs();//경로 생성
+				mf.transferTo(new File(safeFile));	
+			
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		boardService.insertFileList(fList);
 		return boardView(request);
 	}
 	

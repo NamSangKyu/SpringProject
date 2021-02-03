@@ -61,6 +61,9 @@
 	<insert id="insertBoard" parameterType="board.dto.BoardDTO">
 		insert into board(bno,title,writer,content) values(#{bno},#{title},#{writer},#{content})
 	</insert>
+	<insert id="insertFileList" parameterType="board.dto.FileDTO">
+		insert into board_file_list values(#{bno},#{writer},#{fileName})
+	</insert>
 </mapper>
 
 
