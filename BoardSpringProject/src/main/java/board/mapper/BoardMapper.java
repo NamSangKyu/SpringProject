@@ -16,6 +16,8 @@ public interface BoardMapper {
 	BoardDTO selectBoard(int bno);
 	List<CommentDTO> selectBoardComment(int bno);
 	int insertBoardComment(CommentDTO dto);
+	int updateCommentLike(int cno);
+	int updateCommentHate(int cno);
 
 }
 

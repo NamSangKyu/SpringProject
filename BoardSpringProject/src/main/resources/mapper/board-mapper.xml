@@ -36,6 +36,12 @@
 	<insert id="insertBoardComment" parameterType="board.dto.CommentDTO">
 		insert into board_comment(cno, bno, writer, content) values(board_comment_seq.nextval,#{bno},#{writer},#{content})
 	</insert>
+	<update id="updateCommentLike" parameterType="int">
+		update board_comment set blike = blike + 1 where cno = #{cno}  
+	</update>
+	<update id="updateCommentHate" parameterType="int">
+		update board_comment set bhate = bhate+ 1 where cno = #{cno}  
+	</update>
 </mapper>
 
 

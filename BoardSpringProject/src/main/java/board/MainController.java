@@ -240,6 +240,25 @@ public class MainController {
 		
 		return null;
 	}
+	@RequestMapping("/commentLike.do")
+	public String commentLike(HttpServletRequest request) {
+		int cno = Integer.parseInt(request.getParameter("cno"));
+		boardService.updateCommentLike(cno);
+		return boardView(request);
+	}
+	@RequestMapping("/commentHate.do")
+	public String commentHate(HttpServletRequest request) {
+		int cno = Integer.parseInt(request.getParameter("cno"));
+		boardService.updateCommentHate(cno);
+		return boardView(request);
+	}
+	@RequestMapping("/plusLikeHate.do")
+	public String plusLikeHate(HttpServletRequest request) {
+		int bno = Integer.parseInt((String)request.getAttribute("bno"));
+		int mode =Integer.parseInt((String)request.getAttribute("mode"));
+		return null;
+	}
+	
 	
 }
 

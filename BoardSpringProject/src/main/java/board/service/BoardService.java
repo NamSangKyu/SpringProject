@@ -40,6 +40,14 @@ public class BoardService {
 	public int insertComment(CommentDTO dto) {
 		return mapper.insertBoardComment(dto); 		
 	}
+
+	public int updateCommentLike(int cno) {
+		return mapper.updateCommentLike(cno);
+	}
+
+	public int updateCommentHate(int cno) {
+		return mapper.updateCommentHate(cno);
+	}
 	
 	
 }

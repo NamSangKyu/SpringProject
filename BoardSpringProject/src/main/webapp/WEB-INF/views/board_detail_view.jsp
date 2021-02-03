@@ -152,7 +152,7 @@
 					result = result.trim();
 					if(result == "false"){
 						alert("로그인후 이용하실 수 있습니다.");
-						location.href="${pageContext.request.contextPath}/loginView.do";
+						location.href="loginView.do";
 					}
 					console.log(result, result.length);
 					$(obj).children("span").html(result);
@@ -160,7 +160,7 @@
 				},
 				error : function(request, status, error) {
 					alert(request.responseText.trim());
-					location.href="${pageContext.request.contextPath}/loginView.do";
+					location.href="loginView.do";
 					
 				}
 			});
@@ -283,10 +283,10 @@
 							<tr>
 								<td style="width:100px;text-align: center;">${comment.writer }</td>
 								<td style="text-align: center;">${comment.date }</td>
-								<td style="width:50px;text-align: center;"><a href="commentLike.do">${comment.blike }</a></td>
-								<td style="width:50px;text-align: center;"><a href="commentHate.do">${comment.bhate }</a></td>
+								<td style="width:50px;text-align: center;"><a href="commentLike.do?cno=${comment.cno }&bno=${requestScope.board.bno}">${comment.blike }</a></td>
+								<td style="width:50px;text-align: center;"><a href="commentHate.do?cno=${comment.cno }&bno=${requestScope.board.bno}">${comment.bhate }</a></td>
 							</tr>
-							<tr><td colspan="4">${comment.content }</td>
+							<tr><td colspan="4" style="text-align: left;">${comment.content }</td>
 							</tr>
 						</table>
 					</c:forEach>
