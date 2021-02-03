@@ -61,6 +61,14 @@ public class BoardService {
 		else
 			return dto.getbHate();
 	}
+
+	public int newBno() {
+		return mapper.newBno();
+	}
+
+	public int insertBoard(BoardDTO dto) {
+		return mapper.insertBoard(dto);
+	}
 	
 	
 }

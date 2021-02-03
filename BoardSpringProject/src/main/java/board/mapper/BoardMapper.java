@@ -20,6 +20,8 @@ public interface BoardMapper {
 	int updateCommentLike(int cno);
 	int updateCommentHate(int cno);
 	void addBoardLikeHate(HashMap<String, Object> map);
+	int newBno();
+	int insertBoard(BoardDTO dto);
 
 }
 

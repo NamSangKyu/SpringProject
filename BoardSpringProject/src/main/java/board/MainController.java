@@ -193,7 +193,7 @@ public class MainController {
 		return null;
 	}
 	
-	@RequestMapping("sendLog.do")
+	@RequestMapping("/sendLog.do")
 	public String sendLog(HttpServletRequest request, HttpServletResponse response) {
 		String log_date = request.getParameter("log_date");
 		int code_number = Integer.parseInt(request.getParameter("code_number"));
@@ -212,7 +212,11 @@ public class MainController {
 	public String boardView(HttpServletRequest request) {
 		//게시글 하나 읽음
 		//1. request에서 게시글 번호 읽어옴
-		int bno = Integer.parseInt(request.getParameter("bno"));
+		int bno = 0;
+		if(request.getParameter("bno") != null)
+			bno = Integer.parseInt(request.getParameter("bno"));
+		else
+			bno = (int)request.getAttribute("bno");
 		//1-1. 해당 게시글 조회수 증가
 		boardService.addCount(bno);
 		//2. DB 해당 게시글 정보 읽어옴
@@ -268,6 +272,23 @@ public class MainController {
 		return null;
 	}
 	
+	@RequestMapping("/boardWriteView.do")
+	public String boardWriteView() {
+		return "board_write_view";
+	}
+	
+	@RequestMapping("/boardWriteAction.do")
+	public String boardWriteAction(HttpServletRequest request) {
+		//글번호 먼저 발급
+		int bno = boardService.newBno();
+		
+		String title = request.getParameter("title");
+		String writer = request.getParameter("writer");
+		String content = request.getParameter("content");
+		boardService.insertBoard(new BoardDTO(bno, title, writer, content));
+		request.setAttribute("bno", bno);
+		return boardView(request);
+	}
 	
 }
 

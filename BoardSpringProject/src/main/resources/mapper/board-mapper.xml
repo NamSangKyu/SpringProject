@@ -55,6 +55,12 @@
 		where bno = #{bno}
 	
 	</update>
+	<select id="newBno" resultType="int">
+		select bno_seq.nextval from dual
+	</select>
+	<insert id="insertBoard" parameterType="board.dto.BoardDTO">
+		insert into board(bno,title,writer,content) values(#{bno},#{title},#{writer},#{content})
+	</insert>
 </mapper>
 
 

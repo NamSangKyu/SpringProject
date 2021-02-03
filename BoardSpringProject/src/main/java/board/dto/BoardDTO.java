@@ -42,6 +42,14 @@ public class BoardDTO {
 		this.bHate = bHate;
 	}
 	
+	public BoardDTO(int bno, String title, String writer, String content) {
+		super();
+		this.bno = bno;
+		this.title = title;
+		this.writer = writer;
+		this.content = content;
+	}
+
 	public BoardDTO(int bno, String title, String bDate, int bCount, String writer, String content, int bLike,
 			int bHate, int cCount) {
 		super();
