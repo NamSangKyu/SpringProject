@@ -111,6 +111,15 @@
 	.comment_form p {
 		margin:0;
 	}
+	.comment{
+		boder-radius:10px;
+		background-color: #e8e8e8;
+	}
+	.comment td,.comment th{
+		padding: 10px !important;
+		text-align:center  !important;
+		box-sizing: border-box;
+	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -264,14 +273,22 @@
 						<td colspan="2">
 					
 					<c:forEach var="comment" items="${requestScope.comment }">
-						<p>${comment.writer }
-						${comment.date }
-						${comment.blike }
-						${comment.bhate }
-						</p>
-						<p>
-							${comment.content }
-						</p>
+						<table class="comment">	
+							<tr>
+								<th>작성자</th>
+								<th>작성일</th>
+								<th>좋아요</th>
+								<th>싫어요</th>
+							</tr>
+							<tr>
+								<td style="width:100px;text-align: center;">${comment.writer }</td>
+								<td style="text-align: center;">${comment.date }</td>
+								<td style="width:50px;text-align: center;"><a href="commentLike.do">${comment.blike }</a></td>
+								<td style="width:50px;text-align: center;"><a href="commentHate.do">${comment.bhate }</a></td>
+							</tr>
+							<tr><td colspan="4">${comment.content }</td>
+							</tr>
+						</table>
 					</c:forEach>
 					
 						</td>
