@@ -22,6 +22,9 @@ public class FileDTO {
 		case "gif":
 			type="image";
 			break;
+		case "mp4":
+			type="video";
+			break;
 		default:
 			type="normal";
 		}
@@ -32,12 +35,15 @@ public class FileDTO {
 		this.bno = bno;
 		this.writer = writer;
 		this.fileName = fileName;
-		switch(fileName.substring(fileName.lastIndexOf(".")+1)) {
+		switch(fileName.substring(fileName.lastIndexOf(".")+1).toLowerCase()) {
 		case "png":
 		case "bmp":
 		case "jpg":
 		case "gif":
 			type="image";
+			break;
+		case "mp4":
+			type="video";
 			break;
 		default:
 			type="normal";
@@ -70,6 +76,11 @@ public class FileDTO {
 
 	public void setWriter(String writer) {
 		this.writer = writer;
+	}
+
+	@Override
+	public String toString() {
+		return "FileDTO [bno=" + bno + ", fileName=" + fileName + ", writer=" + writer + ", type=" + type + "]";
 	}
 	
 	

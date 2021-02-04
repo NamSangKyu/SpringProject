@@ -234,7 +234,7 @@ public class MainController {
 		List<CommentDTO> list = boardService.selectBoardComment(bno);
 		//2-2. 첨부파일 로드 부분
 		List<FileDTO> fList = boardService.selectFileList(bno);
-		
+		System.out.println(fList.toString());
 		//3. request에 BoardDTO, CommentList 저장
 		request.setAttribute("board", dto);
 		request.setAttribute("comment", list);
@@ -310,6 +310,7 @@ public class MainController {
 			if(fileSize == 0) continue;
 			System.out.println("originalFileName : " + originalFileName);
 			System.out.println("fileSize : "+ fileSize);
+			System.err.println(mf.getContentType());
 			
 			try {
 			//파일 업로드
@@ -334,6 +335,7 @@ public class MainController {
 		String fileName = request.getParameter("file");
 		String writer = request.getParameter("writer");
 		String path = "c:\\fileupload\\"+writer+"\\"+fileName;
+
 		File file = new File(path);
 		try {
 			FileInputStream fis = new FileInputStream(file);
@@ -342,6 +344,36 @@ public class MainController {
 			response.setHeader("Content-Disposition", "attachment;filename="+fileName);
 			response.setHeader("Content-Transfer-Encode", "binary");
 			response.setContentLength((int)file.length());
+			BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
+			byte[] buffer = new byte[1024*1024];
+			while(true) {
+				int count = fis.read(buffer);
+				if(count == -1) break;
+				bos.write(buffer, 0, count);
+				bos.flush();
+			}
+			fis.close();
+			bos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@RequestMapping("/imageLoad.do")
+	public String imageLoad(HttpServletRequest request, HttpServletResponse response) {
+		String fileName = request.getParameter("file");
+		String writer = request.getParameter("writer");
+		String path = "c:\\fileupload\\"+writer+"\\"+fileName;
+
+		File file = new File(path);
+		try {
+			FileInputStream fis = new FileInputStream(file);
+			String encodingName = URLEncoder.encode(path,"utf-8");
+			fileName = URLEncoder.encode(fileName,"utf-8");
 			BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
 			byte[] buffer = new byte[1024*1024];
 			while(true) {

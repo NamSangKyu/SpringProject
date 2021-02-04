@@ -224,6 +224,9 @@
 							<c:if test="${f.type =='image' }">
 								<img src="imageLoad.do?writer=${f.writer }&file=${f.fileName}&type=${f.type}">
 							</c:if>
+							<c:if test="${f.type =='video' }">
+								<video controls src="imageLoad.do?writer=${f.writer }&file=${f.fileName}&type=${f.type}"></video>
+							</c:if>
 						</c:forEach>
 					</td>
 				</tr>
