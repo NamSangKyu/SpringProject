@@ -218,7 +218,7 @@
 					<td colspan="2">
 						첨부파일<br>
 						<c:forEach var="f" items="${requestScope.file }">
-							<a href="filedownload.jsp?writer=${f.writer }&file=${f.fileName}">
+							<a href="fileDownload.do?writer=${f.writer }&file=${f.fileName}">
 							${f.fileName}</a><br>
 							<!-- 해당 파일이 이미지인지? -->
 							<c:if test="${f.type =='image' }">

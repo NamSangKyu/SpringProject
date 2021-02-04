@@ -1,7 +1,12 @@
 package board;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -324,7 +329,38 @@ public class MainController {
 		boardService.insertFileList(fList);
 		return boardView(request);
 	}
-	
+	@RequestMapping("/fileDownload.do")
+	public String fileDownload(HttpServletRequest request, HttpServletResponse response) {
+		String fileName = request.getParameter("file");
+		String writer = request.getParameter("writer");
+		String path = "c:\\fileupload\\"+writer+"\\"+fileName;
+		File file = new File(path);
+		try {
+			FileInputStream fis = new FileInputStream(file);
+			String encodingName = URLEncoder.encode(path,"utf-8");
+			fileName = URLEncoder.encode(fileName,"utf-8");
+			response.setHeader("Content-Disposition", "attachment;filename="+fileName);
+			response.setHeader("Content-Transfer-Encode", "binary");
+			response.setContentLength((int)file.length());
+			BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
+			byte[] buffer = new byte[1024*1024];
+			while(true) {
+				int count = fis.read(buffer);
+				if(count == -1) break;
+				bos.write(buffer, 0, count);
+				bos.flush();
+			}
+			fis.close();
+			bos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
 
 
