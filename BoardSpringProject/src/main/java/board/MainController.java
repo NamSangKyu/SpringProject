@@ -443,6 +443,24 @@ public class MainController {
 		}
 		return null;
 	}
+	@RequestMapping("adminQnaDetailView.do")
+	public String adminQnaDetailView(HttpServletRequest request, HttpServletResponse response) {
+		int qno = Integer.parseInt(request.getParameter("qno"));
+		QnaDTO dto = qnaSerivce.selectQna(qno);
+		if(dto == null) {
+			try {
+				response.setContentType("text/html;charset=utf-8");
+				response.getWriter().write("<script>alert('문의글이 없습니다.'); history.back();</script>");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else {
+			System.out.println(dto);
+			request.setAttribute("dto", dto);
+			return "admin_qna_view";
+		}
+		return null;
+	}
 }
 
 

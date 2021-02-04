@@ -33,6 +33,11 @@ public class QnAService {
 	public int selectCount() {
 		return mapper.selectCount();
 	}
+
+	public QnaDTO selectQna(int qno) {
+		mapper.updateQnAStatus(qno);
+		return mapper.selectQna(qno);
+	}
 	
 }
 
