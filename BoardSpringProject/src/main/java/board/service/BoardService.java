@@ -77,6 +77,10 @@ public class BoardService {
 			mapper.insertFileList(fList.get(i));
 		
 	}
+
+	public List<FileDTO> selectFileList(int bno) {
+		return mapper.selectFileList(bno);
+	}
 	
 	
 }

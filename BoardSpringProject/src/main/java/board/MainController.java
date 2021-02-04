@@ -228,10 +228,12 @@ public class MainController {
 		//2-1. 댓글 로드 부분
 		List<CommentDTO> list = boardService.selectBoardComment(bno);
 		//2-2. 첨부파일 로드 부분
+		List<FileDTO> fList = boardService.selectFileList(bno);
 		
 		//3. request에 BoardDTO, CommentList 저장
 		request.setAttribute("board", dto);
 		request.setAttribute("comment", list);
+		request.setAttribute("file", fList);
 		
 		
 		return "board_detail_view";
