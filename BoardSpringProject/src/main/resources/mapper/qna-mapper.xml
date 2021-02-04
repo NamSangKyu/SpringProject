@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.mapper.QnAMapper">
+	<select id="selectQnaList" parameterType="map" resultType="board.dto.QnaDTO">
+		select qno, title, content, wdate, writer, status, response 
+		from (select ceil(rownum / 5) as page, qno, title, content, 
+		wdate, writer, status, nvl(response,'입력된 답변이 없습니다') 
+		from (select * from qna where writer = #{writer} order by qno desc)) 
+		where page = #{pageNo}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

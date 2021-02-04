@@ -20,13 +20,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.view.RedirectView;
 
 import board.dto.BoardDTO;
 import board.dto.CommentDTO;
 import board.dto.FileDTO;
 import board.dto.MemberDTO;
+import board.dto.QnaDTO;
 import board.service.BoardService;
 import board.service.MemberService;
+import board.service.QnAService;
 import board.vo.PaggingVO;
 
 @Controller
@@ -289,7 +292,7 @@ public class MainController {
 	}
 	
 	@RequestMapping("/boardWriteAction.do")
-	public String boardWriteAction(MultipartHttpServletRequest request) {
+	public RedirectView boardWriteAction(MultipartHttpServletRequest request) {
 		//글번호 먼저 발급
 		int bno = boardService.newBno();
 		
@@ -328,7 +331,8 @@ public class MainController {
 			
 		}
 		boardService.insertFileList(fList);
-		return boardView(request);
+//		return "redirect:boardView.do?bno="+bno;
+		return new RedirectView("boardView.do?bno="+bno);
 	}
 	@RequestMapping("/fileDownload.do")
 	public String fileDownload(HttpServletRequest request, HttpServletResponse response) {
@@ -392,6 +396,16 @@ public class MainController {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	@RequestMapping("/qnaView.do")
+	public String qnaView(HttpServletRequest request) {
+		int pageNo = 1;
+		String id = (String) request.getSession().getAttribute("id");
+		String grade = (String) request.getSession().getAttribute("grade");
+		List<QnaDTO> list = QnAService.getInstance().selectQnaList(id,pageNo,grade);
+		request.setAttribute("list", list);
+		return "qna";
 	}
 }
 
