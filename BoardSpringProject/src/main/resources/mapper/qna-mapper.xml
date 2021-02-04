@@ -29,6 +29,9 @@
 	<update id="updateQnAStatus" parameterType="int">
 		update qna set status = 1 where qno = #{qno} and status not in(1,2)
 	</update>
+	<update id="updateResponse" parameterType="map">
+		update qna set  response =  #{answer}, status=2 where qno = #{qno}
+	</update>
 </mapper>
 
 

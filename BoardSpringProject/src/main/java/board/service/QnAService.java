@@ -38,6 +38,14 @@ public class QnAService {
 		mapper.updateQnAStatus(qno);
 		return mapper.selectQna(qno);
 	}
+
+	public int updateResponse(int qno, String str) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("qno", qno);
+		map.put("answer", str);
+		
+		return mapper.updateResponse(map);
+	}
 	
 }
 

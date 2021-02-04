@@ -450,6 +450,7 @@ public class MainController {
 		if(dto == null) {
 			try {
 				response.setContentType("text/html;charset=utf-8");
+				response.setCharacterEncoding("utf-8");
 				response.getWriter().write("<script>alert('문의글이 없습니다.'); history.back();</script>");
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -461,6 +462,14 @@ public class MainController {
 		}
 		return null;
 	}
+	@RequestMapping("answer.do")
+	public String answer(HttpServletRequest request, HttpServletResponse response) {
+		int qno = Integer.parseInt(request.getParameter("qno"));
+		String str = request.getParameter("response");
+		qnaSerivce.updateResponse(qno,str);
+		return adminQnaDetailView(request,response);
+	}
+	
 }
 
 
