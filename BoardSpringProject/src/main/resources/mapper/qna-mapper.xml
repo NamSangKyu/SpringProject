@@ -10,6 +10,9 @@
 		from (select * from qna where writer = #{id} order by qno desc)) 
 		where page = #{pageNo}
 	</select>
+	<insert id="insertQnA" parameterType="board.dto.QnaDTO">
+		insert into qna(qno, title, content, writer) values(qno_seq.nextval, #{title}, #{content} ,#{writer})
+	</insert>
 </mapper>
 
 

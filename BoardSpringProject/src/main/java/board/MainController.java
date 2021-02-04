@@ -409,6 +409,25 @@ public class MainController {
 		request.setAttribute("list", list);
 		return "qna";
 	}
+	@RequestMapping("/sendQnA.do")
+	public String sendQnA(HttpServletRequest request, HttpServletResponse response) {
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String writer = (String) request.getSession().getAttribute("id");
+		int count = qnaSerivce.insertQnA(new QnaDTO(title, content, writer));
+		
+		if(count == 0) {
+			try {
+				response.setContentType("text/html;charset=utf-8");
+				response.getWriter().append("<script>alert('문의 등록중 문제가 생겼습니다');history.back();</script>");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else {
+			return qnaView(request);
+		}
+		return null;
+	}
 }
 
 

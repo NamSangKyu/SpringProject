@@ -12,4 +12,6 @@ public interface QnAMapper {
 
 	List<QnaDTO> selectQnaList(HashMap<String, Object> map);
 
+	int insertQnA(QnaDTO qnaDTO);
+
 }

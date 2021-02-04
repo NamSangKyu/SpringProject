@@ -24,5 +24,17 @@ public class QnAService {
 		
 		return mapper.selectQnaList(map);
 	}
+
+	public int insertQnA(QnaDTO qnaDTO) {
+		return mapper.insertQnA(qnaDTO);
+	}
 	
 }
+
+
+
+
+
+
+
+
