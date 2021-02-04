@@ -409,6 +409,21 @@ public class MainController {
 		request.setAttribute("list", list);
 		return "qna";
 	}
+	@RequestMapping("/qnaAdminView.do")
+	public String qnaAdminView(HttpServletRequest request) {
+		String id = (String) request.getSession().getAttribute("id");
+		String grade = (String) request.getSession().getAttribute("grade");
+		int pageNo = 1;
+		if(request.getParameter("pageNo") != null)
+			 pageNo = Integer.parseInt(request.getParameter("pageNo"));
+		List<QnaDTO> list = qnaSerivce.selectQnaList(id, pageNo, grade);
+		int count = qnaSerivce.selectCount();
+		PaggingVO vo = new PaggingVO(count, pageNo);
+		System.out.println(vo);
+		request.getSession().setAttribute("page", vo);
+		request.getSession().setAttribute("list", list);
+		return "admin_qna";
+	}
 	@RequestMapping("/sendQnA.do")
 	public String sendQnA(HttpServletRequest request, HttpServletResponse response) {
 		String title = request.getParameter("title");

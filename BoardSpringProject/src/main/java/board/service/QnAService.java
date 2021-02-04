@@ -21,12 +21,17 @@ public class QnAService {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("id",id );
 		map.put("pageNo",pageNo);
-		
+		if(grade.equals("master"))
+			return mapper.selectQnaAdminList(pageNo);
 		return mapper.selectQnaList(map);
 	}
-
+ 
 	public int insertQnA(QnaDTO qnaDTO) {
 		return mapper.insertQnA(qnaDTO);
+	}
+
+	public int selectCount() {
+		return mapper.selectCount();
 	}
 	
 }

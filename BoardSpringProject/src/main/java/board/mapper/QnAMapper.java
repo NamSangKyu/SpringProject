@@ -14,4 +14,8 @@ public interface QnAMapper {
 
 	int insertQnA(QnaDTO qnaDTO);
 
+	int selectCount();
+
+	List<QnaDTO> selectQnaAdminList(int pageNo);
+
 }

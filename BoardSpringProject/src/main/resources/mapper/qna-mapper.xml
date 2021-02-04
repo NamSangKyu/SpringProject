@@ -10,9 +10,18 @@
 		from (select * from qna where writer = #{id} order by qno desc)) 
 		where page = #{pageNo}
 	</select>
+	<select id="selectQnaAdminList" parameterType="int" resultType="board.dto.QnaDTO">
+		select qno, title, content, wdate, writer, status, response from 
+		(select ceil(rownum / 7) as page, qno, title, 
+		content, wdate, writer, status, response from 
+		(select * from qna order by status asc, qno desc)) where page = #{pageNo}
+	</select>
 	<insert id="insertQnA" parameterType="board.dto.QnaDTO">
 		insert into qna(qno, title, content, writer) values(qno_seq.nextval, #{title}, #{content} ,#{writer})
 	</insert>
+	<select id="selectCount" resultType="int">
+		select count(*) from qna
+	</select>
 </mapper>
 
 
