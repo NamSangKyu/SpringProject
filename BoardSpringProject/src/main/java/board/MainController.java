@@ -36,10 +36,11 @@ import board.vo.PaggingVO;
 public class MainController {
 	private MemberService memberService;
 	private BoardService boardService;
-	public MainController(MemberService memberService, BoardService boardService) {
-		super();
+	private QnAService qnaSerivce;
+	public MainController(MemberService memberService, BoardService boardService, QnAService qnAService) {
 		this.memberService = memberService;
 		this.boardService = boardService;
+		this.qnaSerivce = qnAService;
 	}
 
 	@RequestMapping("/")
@@ -403,7 +404,8 @@ public class MainController {
 		int pageNo = 1;
 		String id = (String) request.getSession().getAttribute("id");
 		String grade = (String) request.getSession().getAttribute("grade");
-		List<QnaDTO> list = QnAService.getInstance().selectQnaList(id,pageNo,grade);
+		List<QnaDTO> list = qnaSerivce.selectQnaList(id,pageNo,grade);
+		System.out.println(list.toString());
 		request.setAttribute("list", list);
 		return "qna";
 	}
