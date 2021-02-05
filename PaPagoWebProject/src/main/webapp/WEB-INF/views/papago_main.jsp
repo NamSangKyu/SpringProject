@@ -72,7 +72,7 @@
 			<textarea name="text" id="text"></textarea>
 		</article>
 		<article>
-			<select name="source">
+			<select name="target" id="target">
 				<option value="ko">한국어</option>
 				<option value="en">영어</option>
 				<option value="de">독일어</option>
