@@ -58,7 +58,7 @@ public class PaPaGoMain {
 	            	FileWriter fw = new FileWriter("error.txt",true);
 	            	PrintWriter pw = new PrintWriter(fw);
 	            	JSONObject obj = new JSONObject(response.toString());
-	            	SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD HH24:MI:SS");
+	            	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 	            	String date = sdf.format(Calendar.getInstance().getTime());
 	            	String msg = date + "\t" + responseCode + "\t" + obj.getString("errorCode")
 	            	+ "\t" + obj.getString("errorMessage");
