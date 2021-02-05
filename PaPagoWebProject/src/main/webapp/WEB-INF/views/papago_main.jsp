@@ -56,6 +56,26 @@
 	}
 	
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function(){
+		$("#btn_translate").click(function(){
+			var param = "";
+			param += "target="+$("#target").val();
+			param += "&source="+$("#source").val();
+			param += "&text="+$("#text").val();
+			$.ajax({
+				url:"translate.do",
+				data:param,
+				method:"get",
+				success:function(d){
+					$("#result").val(d);
+				}
+			});
+		});//click
+	});//ready
+	
+</script>
 </head>
 <body>
 	<h1>파파고 번역 페이지</h1>
@@ -80,7 +100,7 @@
 				<option value="zh-CN">중국어</option>
 			</select>
 			<h1>번역된 내용</h1>
-			<textarea name="text" id="text"></textarea>
+			<textarea name="result" id="result"></textarea>
 		</article>
 		<button id="btn_translate">>></button>
 	</section>
