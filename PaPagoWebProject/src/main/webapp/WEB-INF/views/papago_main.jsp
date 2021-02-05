@@ -13,7 +13,7 @@
 	}
 	section{
 		width:800px;
-		position:absolute;
+		position:relative;
 		margin:0 auto;
 		text-align: center;
 	}
@@ -32,20 +32,36 @@
 	h1{
 		font-size: 24px;
 		padding:20px 0px;
+		text-align: center;
 	}
 	textarea {
 		width:100%;
 		height:500px;
+		padding:10px;
+		box-sizing:border-box;
 		resize: none;
 	}
-	
+	#btn_translate{
+		width: 50px;
+		height: 50px;
+		background-color: black;
+		font-weight: bold;
+		color:white;
+		border-radius: 50px;
+		position: absolute;
+		left: 375px;
+		top: 300px;
+		outline: none;
+		border:none;
+	}
 	
 </style>
 </head>
 <body>
+	<h1>파파고 번역 페이지</h1>
 	<section>
 		<article>
-			<select name="source">
+			<select name="source" id="source">
 				<option value="ko">한국어</option>
 				<option value="en">영어</option>
 				<option value="de">독일어</option>
