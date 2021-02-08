@@ -20,6 +20,32 @@
 	form{
 		display: inline-block;
 	}
+	figure{
+		width:100%;
+		padding:20px;
+		box-sizing: border-box;
+		display: inline-block;
+		clear: both;
+	}
+	img{
+		width: 100px;
+		height:150px;
+		border :1px solid black;
+		display: inline-block;
+		float: left;
+	}
+	#result{
+		margin:0 auto;
+	}
+	figcaption{
+		width:900px;
+		height:150px;
+		border :1px solid black;
+		display: inline-block;
+		text-align: left;
+		float: left;
+		margin-left: 20px;
+	}
 </style>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -32,7 +58,30 @@
 	</div>
 	<hr>
 	<div id="result">
-	
+		<figure>
+			<img src="">
+			<figcaption>
+				<p><a href="#">책제목</a></p>
+				<p>저자 : 홍길동, 출판사 : 자바 홀딩스</p>
+				<p>요약 내용</p>
+			</figcaption>
+		</figure>
+		<figure>
+			<img src="">
+			<figcaption>
+				<p><a href="#">책제목</a></p>
+				<p>저자 : 홍길동, 출판사 : 자바 홀딩스</p>
+				<p>요약 내용</p>
+			</figcaption>
+		</figure>
+		<figure>
+			<img src="">
+			<figcaption>
+				<p><a href="#">책제목</a></p>
+				<p>저자 : 홍길동, 출판사 : 자바 홀딩스</p>
+				<p>요약 내용</p>
+			</figcaption>
+		</figure>
 	</div>
 </body>
 </html>
