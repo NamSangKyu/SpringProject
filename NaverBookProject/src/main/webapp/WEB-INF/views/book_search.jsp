@@ -48,11 +48,27 @@
 	}
 </style>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("button").click(function(){
+			var str = "title="+$("id").val();
+			$.ajax({
+				data : str,
+				url : "search.do",
+				method:"get",
+				dataType:"json",
+				success:function(result) {
+					alert(result.responseCode);
+				}
+			});//ajax
+		});//click
+	});//main
+</script>
 </head>
 <body>
 	<div>
 		<form id="frm">
-			<input type="text" name="title" placeholder="책 제목을 입력하세요">
+			<input type="text" id="title" placeholder="책 제목을 입력하세요">
 			<button type="button">검색</button> 
 		</form>
 	</div>
