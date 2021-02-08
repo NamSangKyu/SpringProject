@@ -57,7 +57,8 @@ public class BookSearchMain {
 				System.out.println(arr.getJSONObject(i).getString("title"));
 				System.out.println(arr.getJSONObject(i).getString("link"));
 				System.out.println(arr.getJSONObject(i).getString("description"));
-				
+				String str[] = arr.getJSONObject(i).getString("link").split("=");
+				downloadImage(arr.getJSONObject(i).getString("image"),str[1]);
 			}
 			br.close();
 			con.disconnect();
@@ -68,17 +69,24 @@ public class BookSearchMain {
 		}
 
 	}
-	//웹에 있는 이미지 다운로드       경로       책 제목,          책 제목으로 파일명을 만듬          
-	public void downloadImage(String url,String title) {
+	//웹에 있는 이미지			         다운로드 경로     책 제목          책 제목으로 파일명을 만듬          
+	public static void downloadImage(String url,String title) {
 		try {
 			URL imgUrl = new URL(url);
 			URLConnection conn = imgUrl.openConnection();//이미지 파일과 연결
 			
 			InputStream is = conn.getInputStream();
-			FileOutputStream fos = new FileOutputStream("저장할 이미지 경로");
+			FileOutputStream fos = new FileOutputStream(title+".jpg");
 			
-			//is에서 받은 내용을  fos 통해서 출력
-			
+			//is에서 받은 내용을  fos 통해서 출력 -> stream으로 read/write --> byte
+			byte[] arr = new byte[1024];
+			while(true) {
+				int count = is.read(arr); //웹에서 읽어옴
+				if(count == -1) break;
+				fos.write(arr,0,count); //읽어온 내용을 파일 출력
+			}
+			fos.close();
+			is.close();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
