@@ -2,7 +2,6 @@ package papago;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
-import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -11,20 +10,19 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
 import org.json.JSONObject;
 
-public class PaPaGoMain {
-
-	public static void main(String[] args) {
+public class PaPaGo {
+	public String translatePaPaGo(String target,String source, String text) {
 		 String clientId = "PWbtPqmChTr4FWM7DX8G";//애플리케이션 클라이언트 아이디값";
 	        String clientSecret = "vGqvzkyqxq";//애플리케이션 클라이언트 시크릿값";
+	        JSONObject result = new JSONObject();
 	        try {
 	        	String str = JOptionPane.showInputDialog("번역할 문장 입력");
-	            String text = URLEncoder.encode(str, "UTF-8");
+	            text = URLEncoder.encode(str, "UTF-8");
 	            String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
 	            URL url = new URL(apiURL);
 	            HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -32,7 +30,7 @@ public class PaPaGoMain {
 	            con.setRequestProperty("X-Naver-Client-Id", clientId);
 	            con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
 	            // post request
-	            String postParams = "source=ko&target=en&text=" + text;
+	            String postParams = "source="+source+"&target="+target+"&text=" + text;
 	            con.setDoOutput(true);
 	            DataOutputStream wr = new DataOutputStream(con.getOutputStream());
 	            wr.writeBytes(postParams);
@@ -53,6 +51,10 @@ public class PaPaGoMain {
 	            }
 	            br.close();
 	            System.out.println(response.toString());
+	            JSONObject res = new JSONObject(response.toString());
+	            result.put("resposeCode", res.getString("resposeCode"));
+	            result.put("resultText", res.getJSONObject("message").
+	            		getJSONObject("result").getString("translatedText"));
 	            
 	            if(responseCode != 200) {
 	            	FileWriter fw = new FileWriter("error.txt",true);
@@ -70,7 +72,6 @@ public class PaPaGoMain {
 	        } catch (Exception e) {
 	            System.out.println(e);
 	        }
-
+		return result.toString();
 	}
-
 }
