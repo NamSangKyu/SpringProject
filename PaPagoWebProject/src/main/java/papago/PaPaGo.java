@@ -35,10 +35,11 @@ public class PaPaGo {
 	            wr.close();
 	            int responseCode = con.getResponseCode();
 	            BufferedReader br;
+	            System.out.println(responseCode);
 	            if(responseCode==200) { // 정상 호출
 	                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-	            } else {  // 에러 발생
-	            	System.out.println(responseCode);
+	            } else {  // 에러 발생 -log 처리 txt로 처리
+	            	//{"errorMessage":"source and target must be different (source와 target이 동일합니다.)","errorCode":"N2MT05"}
 	                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
 	            }
 	            String inputLine;
@@ -50,7 +51,7 @@ public class PaPaGo {
 	            br.close();
 	            System.out.println(response.toString());
 	            JSONObject res = new JSONObject(response.toString());
-	            result.put("resposeCode", responseCode);
+	            result.put("responseCode", responseCode);
 	            result.put("resultText", res.getJSONObject("message").
 	            		getJSONObject("result").getString("translatedText"));
 	            

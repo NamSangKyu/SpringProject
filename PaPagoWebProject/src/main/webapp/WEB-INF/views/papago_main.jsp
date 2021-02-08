@@ -68,8 +68,13 @@
 				url:"translate.do",
 				data:param,
 				method:"get",
+				dataType:"json",
 				success:function(d){
-					$("#result").val(d);
+					var responseCode = d.responseCode;
+					if(responseCode == 200)
+						$("#result").val(d.resultText);
+					else
+						$("#result").val("번역 오류가 발생 했습니다.");
 				}
 			});
 		});//click
