@@ -11,8 +11,6 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import javax.swing.JOptionPane;
-
 import org.json.JSONObject;
 
 public class PaPaGo {
@@ -21,8 +19,7 @@ public class PaPaGo {
 	        String clientSecret = "vGqvzkyqxq";//애플리케이션 클라이언트 시크릿값";
 	        JSONObject result = new JSONObject();
 	        try {
-	        	String str = JOptionPane.showInputDialog("번역할 문장 입력");
-	            text = URLEncoder.encode(str, "UTF-8");
+	        	text = URLEncoder.encode(text, "UTF-8");
 	            String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
 	            URL url = new URL(apiURL);
 	            HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -48,11 +45,12 @@ public class PaPaGo {
 	            StringBuffer response = new StringBuffer();
 	            while ((inputLine = br.readLine()) != null) {
 	                response.append(inputLine);
+	                System.err.println(response);
 	            }
 	            br.close();
 	            System.out.println(response.toString());
 	            JSONObject res = new JSONObject(response.toString());
-	            result.put("resposeCode", res.getString("resposeCode"));
+	            result.put("resposeCode", responseCode);
 	            result.put("resultText", res.getJSONObject("message").
 	            		getJSONObject("result").getString("translatedText"));
 	            

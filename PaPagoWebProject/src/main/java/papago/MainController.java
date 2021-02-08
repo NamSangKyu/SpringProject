@@ -27,7 +27,8 @@ public class MainController {
 		String target = request.getParameter("target");
 		String text = request.getParameter("text");
 		String source = request.getParameter("source");
-		String result = appContext.getBean(PaPaGo.class).translatePaPaGo(target, source, text);
+		System.out.println(target + " " + text + " " + source);
+		String result = appContext.getBean("papago",PaPaGo.class).translatePaPaGo(target, source, text);
 		
 		try {
 			response.setContentType("text/html;charset=utf-8");

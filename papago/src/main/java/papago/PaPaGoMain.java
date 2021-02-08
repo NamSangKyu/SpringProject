@@ -23,7 +23,7 @@ public class PaPaGoMain {
 		 String clientId = "PWbtPqmChTr4FWM7DX8G";//애플리케이션 클라이언트 아이디값";
 	        String clientSecret = "vGqvzkyqxq";//애플리케이션 클라이언트 시크릿값";
 	        try {
-	        	String str = JOptionPane.showInputDialog("번역할 문장 입력");
+	        	String str = "안녕하세요";
 	            String text = URLEncoder.encode(str, "UTF-8");
 	            String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
 	            URL url = new URL(apiURL);
