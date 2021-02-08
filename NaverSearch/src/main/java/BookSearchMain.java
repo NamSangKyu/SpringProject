@@ -1,10 +1,13 @@
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.net.URLEncoder;
 
 import javax.swing.JOptionPane;
@@ -12,7 +15,7 @@ import javax.swing.JOptionPane;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class BlogSearchMain {
+public class BookSearchMain {
 
 	public static void main(String[] args) {
 		String txt = JOptionPane.showInputDialog("블로그 검색어 입력");
@@ -25,7 +28,7 @@ public class BlogSearchMain {
 			e.printStackTrace();
 		}
 
-		String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + txt + "&sort=date";
+		String apiURL = "https://openapi.naver.com/v1/search/book?query=" + txt + "&sort=date";
 		URL url;
 		try {
 			url = new URL(apiURL);
@@ -54,6 +57,7 @@ public class BlogSearchMain {
 				System.out.println(arr.getJSONObject(i).getString("title"));
 				System.out.println(arr.getJSONObject(i).getString("link"));
 				System.out.println(arr.getJSONObject(i).getString("description"));
+				
 			}
 			br.close();
 			con.disconnect();
@@ -64,8 +68,36 @@ public class BlogSearchMain {
 		}
 
 	}
-
+	//웹에 있는 이미지 다운로드       경로       책 제목,          책 제목으로 파일명을 만듬          
+	public void downloadImage(String url,String title) {
+		try {
+			URL imgUrl = new URL(url);
+			URLConnection conn = imgUrl.openConnection();//이미지 파일과 연결
+			
+			InputStream is = conn.getInputStream();
+			FileOutputStream fos = new FileOutputStream("저장할 이미지 경로");
+			
+			//is에서 받은 내용을  fos 통해서 출력
+			
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
