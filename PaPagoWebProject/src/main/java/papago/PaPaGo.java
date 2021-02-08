@@ -51,9 +51,6 @@ public class PaPaGo {
 	            br.close();
 	            System.out.println(response.toString());
 	            JSONObject res = new JSONObject(response.toString());
-	            result.put("responseCode", responseCode);
-	            result.put("resultText", res.getJSONObject("message").
-	            		getJSONObject("result").getString("translatedText"));
 	            
 	            if(responseCode != 200) {
 	            	FileWriter fw = new FileWriter("error.txt",true);
@@ -63,10 +60,16 @@ public class PaPaGo {
 	            	String date = sdf.format(Calendar.getInstance().getTime());
 	            	String msg = date + "\t" + responseCode + "\t" + obj.getString("errorCode")
 	            	+ "\t" + obj.getString("errorMessage");
+	            	System.out.println(msg);
 	            	pw.println(msg);
 	            	pw.flush();
 	            	pw.close();
 	            	fw.close();
+	            }else {
+	            	result.put("responseCode", responseCode);
+		            result.put("resultText", res.getJSONObject("message").
+		            		getJSONObject("result").getString("translatedText"));
+		            
 	            }
 	        } catch (Exception e) {
 	            System.out.println(e);
