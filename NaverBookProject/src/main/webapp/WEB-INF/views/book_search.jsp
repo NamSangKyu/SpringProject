@@ -51,14 +51,14 @@
 <script type="text/javascript">
 	$(function(){
 		$("button").click(function(){
-			var str = "title="+$("id").val();
+			var str = "title="+$("#title").val();
 			$.ajax({
 				data : str,
 				url : "search.do",
 				method:"get",
 				dataType:"json",
 				success:function(result) {
-					alert(result.responseCode);
+					console.log(result);
 				}
 			});//ajax
 		});//click

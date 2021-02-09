@@ -19,7 +19,7 @@ public class BookSearchMain {
 
 	public static void main(String[] args) {
 		String txt = JOptionPane.showInputDialog("블로그 검색어 입력");
-		String clientId = "PWbtPqmChTr4FWM7DX8G";
+		String clientId = "PWbtPqmChT4FWM7DX8G";
 		String clientSecret = "vGqvzkyqxq";
 
 		try {
