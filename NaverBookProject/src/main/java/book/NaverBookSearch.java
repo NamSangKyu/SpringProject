@@ -54,7 +54,7 @@ public class NaverBookSearch {
 			System.out.println(result);
 			JSONObject r = new JSONObject(result);
 			if (responseCode == 200) { // 정상 호출
-				r.put("items", r.getJSONArray("items"));
+				obj.put("items", r.getJSONArray("items"));
 			} else { // 에러 발생
 				obj.put("errorCode",r.getString("errorCode"));
 				obj.put("errorMessage",r.getString("errorMessage"));
