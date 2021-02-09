@@ -53,7 +53,13 @@
 		var start = 1;
 		var display = 10;
 		var tag = "";		
+		var title = "";
 		$("#btn_search").click(function(){
+			if(title != $("#title").val()){//새 검색어를 입력 했을때
+					start = 1;
+					title = $("#title").val();
+					tag = "";
+			}
 			var str = "title="+$("#title").val()+"&start="+start+"&display="+display;
 			$.ajax({
 				data : str,
