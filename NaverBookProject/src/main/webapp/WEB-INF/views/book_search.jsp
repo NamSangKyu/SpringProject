@@ -59,8 +59,26 @@
 				dataType:"json",
 				success:function(result) {
 					console.log(result);
+					if(result.responseCode == "200"){
+						//데이터를 읽어서 화면 출력
+						var arr = result.items;
+						var tag = "";
+						for(i=0;i<arr.length;i++){
+							tag += "<figure><img src='"+arr[i].image+"'>"
+								+"<figcaption><p><a href='"+arr[i].link+"'>"+arr[i].title+"</a></p>"
+								+"<p>저자 : "+arr[i].author +", 출판사 : "+arr[i].publisher+"</p>"
+								+"<p>"+arr[i].description+"</p></figcaption></figure>";												
+						}
+						$("#result").html(tag);
+					}else{
+						//실패한 메세지를 출력 --> 코드와 errorMessage를 출력
+					}
 				}
 			});//ajax
+			$("#title").keyup(function(e) {
+				alert(e.keyCode);
+				return false;
+			});
 		});//click
 	});//main
 </script>
@@ -74,30 +92,7 @@
 	</div>
 	<hr>
 	<div id="result">
-		<figure>
-			<img src="">
-			<figcaption>
-				<p><a href="#">책제목</a></p>
-				<p>저자 : 홍길동, 출판사 : 자바 홀딩스</p>
-				<p>요약 내용</p>
-			</figcaption>
-		</figure>
-		<figure>
-			<img src="">
-			<figcaption>
-				<p><a href="#">책제목</a></p>
-				<p>저자 : 홍길동, 출판사 : 자바 홀딩스</p>
-				<p>요약 내용</p>
-			</figcaption>
-		</figure>
-		<figure>
-			<img src="">
-			<figcaption>
-				<p><a href="#">책제목</a></p>
-				<p>저자 : 홍길동, 출판사 : 자바 홀딩스</p>
-				<p>요약 내용</p>
-			</figcaption>
-		</figure>
+		
 	</div>
 </body>
 </html>
