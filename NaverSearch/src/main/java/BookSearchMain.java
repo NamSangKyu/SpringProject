@@ -19,7 +19,7 @@ public class BookSearchMain {
 
 	public static void main(String[] args) {
 		String txt = JOptionPane.showInputDialog("블로그 검색어 입력");
-		String clientId = "PWbtPqmChT4FWM7DX8G";
+		String clientId = "PWbtPqmChTr4FWM7DX8G";
 		String clientSecret = "vGqvzkyqxq";
 
 		try {
@@ -28,7 +28,7 @@ public class BookSearchMain {
 			e.printStackTrace();
 		}
 
-		String apiURL = "https://openapi.naver.com/v1/search/book?query=" + txt + "&sort=date";
+		String apiURL = "https://openapi.naver.com/v1/search/book?query=" + txt + "&sort=date&start=1&display=20";
 		URL url;
 		try {
 			url = new URL(apiURL);

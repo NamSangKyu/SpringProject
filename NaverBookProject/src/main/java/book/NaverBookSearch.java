@@ -15,7 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class NaverBookSearch {
-	public JSONObject searchBook(String book) {
+	public JSONObject searchBook(String book, String start, String display) {
 		JSONObject obj = new JSONObject();
 		//기존 검색하던 내용을 연동
 		String clientId = "PWbtPqmChTr4FWM7DX8G";
@@ -27,7 +27,7 @@ public class NaverBookSearch {
 			e.printStackTrace();
 		}
 
-		String apiURL = "https://openapi.naver.com/v1/search/book?query=" + book + "&sort=date";
+		String apiURL = "https://openapi.naver.com/v1/search/book?query=" + book + "&sort=date&start="+start + "&display="+display;
 		URL url;
 		try {
 			url = new URL(apiURL);

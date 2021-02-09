@@ -50,8 +50,11 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$("button").click(function(){
-			var str = "title="+$("#title").val();
+		var start = 1;
+		var display = 10;
+		var tag = "";		
+		$("#btn_search").click(function(){
+			var str = "title="+$("#title").val()+"&start="+start+"&display="+display;
 			$.ajax({
 				data : str,
 				url : "search.do",
@@ -62,7 +65,6 @@
 					if(result.responseCode == "200"){
 						//데이터를 읽어서 화면 출력
 						var arr = result.items;
-						var tag = "";
 						for(i=0;i<arr.length;i++){
 							tag += "<figure><img src='"+arr[i].image+"'>"
 								+"<figcaption><p><a href='"+arr[i].link+"'>"+arr[i].title+"</a></p>"
@@ -75,11 +77,18 @@
 					}
 				}
 			});//ajax
-			$("#title").keyup(function(e) {
-				alert(e.keyCode);
-				return false;
-			});
+			
 		});//click
+		$("#frm").submit(function(e) {
+			e.preventDefault();
+			$("#btn_search").click();
+		});
+		$("#btn_more").click(function() {
+			if(start>1000)//1000넘을수 없음
+				return false;
+			start += display;
+			$("#btn_search").click();			
+		});
 	});//main
 </script>
 </head>
@@ -87,13 +96,14 @@
 	<div>
 		<form id="frm">
 			<input type="text" id="title" placeholder="책 제목을 입력하세요">
-			<button type="button">검색</button> 
+			<button type="button" id="btn_search">검색</button> 
 		</form>
 	</div>
 	<hr>
 	<div id="result">
 		
 	</div>
+	<button type="button" id="btn_more">더보기</button>
 </body>
 </html>
 

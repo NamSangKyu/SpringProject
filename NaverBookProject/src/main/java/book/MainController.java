@@ -26,8 +26,10 @@ public class MainController {
 		
 		try {
 			String book = request.getParameter("title");
+			String start = request.getParameter("start");
+			String display = request.getParameter("display");
 			response.setContentType("text/html;charset=utf-8");
-			JSONObject json = container.getBean(NaverBookSearch.class).searchBook(book); 
+			JSONObject json = container.getBean(NaverBookSearch.class).searchBook(book, start, display); 
 			json.put("title", request.getParameter("title"));
 			response.getWriter().write(json.toString());
 		} catch (IOException e) {
