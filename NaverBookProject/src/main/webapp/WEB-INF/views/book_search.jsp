@@ -69,7 +69,6 @@
 							+"<p>저자 : "+arr[i].author +", 출판사 : "+arr[i].publisher+"</p>"
 							+"<p>"+arr[i].description+"</p></figcaption></figure>";												
 					}
-					alert(result);
 				}else{
 					//실패한 메세지를 출력 --> 코드와 errorMessage를 출력
 					result += "에러 코드 : "+r.responseCode + ", 에러 메세지 : "+r.responseMessage;					
