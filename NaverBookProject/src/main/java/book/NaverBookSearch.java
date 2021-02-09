@@ -27,7 +27,7 @@ public class NaverBookSearch {
 			e.printStackTrace();
 		}
 
-		String apiURL = "https://openapi.naver.com/v1/search/book?query=" + book + "&sort=date&start="+start + "&display="+display;
+		String apiURL = "https://openapi.naver.com/v1/search/book?query=" + book + "&sort=date&start="+start;
 		URL url;
 		try {
 			url = new URL(apiURL);
