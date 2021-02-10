@@ -12,14 +12,13 @@ public class WeatherTestMain {
 
 	public static void main(String[] args) {
 		//오늘 서울 날씨, 14시 기준으로 조회
-		String nx, ny, baseTime, serviceKey, dataType, baseDate, pageNo, numOfRows, url;
+		String nx, ny, baseTime, serviceKey, dataType, baseDate, numOfRows, url;
 		nx="57";
 		ny="127";
 		url = "http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst";
 		serviceKey = "hpOVfNem4MVro1QdBZTMTq%2FMZs%2B8yylSvxNQlqPiEQec%2Bo99WRRbIvrVqLltto5W0TmluoxR7uQHpHFNZ146qg%3D%3D";
 		dataType = "json";
-		pageNo ="1";
-		numOfRows="88";
+		numOfRows="10";
 		int time = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Calendar cal = Calendar.getInstance();
